@@ -8,6 +8,8 @@ export type AnalyticsEventName =
   | 'calculator_completed'
   | 'calculator_reset'
   | 'currency_changed'
+  | 'etsy_country_changed'
+  | 'profit_goal_copied'
   | 'affiliate_click'
   | 'compare_clicked'
   | 'guide_cta_clicked'
@@ -16,6 +18,8 @@ export type AnalyticsEventName =
 export interface AnalyticsEventParams {
   calculatorType?: string;
   currency?: string;
+  country?: string;
+  target?: number;
   provider?: string;
   guideSlug?: string;
   theme?: string;

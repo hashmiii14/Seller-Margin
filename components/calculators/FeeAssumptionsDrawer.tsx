@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Accordion } from '@/components/ui/Select';
-import { Info, ExternalLink, Calendar } from 'lucide-react';
+import { Info, Calendar } from 'lucide-react';
 
 export interface FeeAssumptionsDrawerProps {
   platformName: string;

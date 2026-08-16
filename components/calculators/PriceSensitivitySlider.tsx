@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { PriceSensitivityPoint, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 export interface PriceSensitivitySliderProps {
   currentPrice: number;
@@ -66,6 +68,7 @@ export const PriceSensitivitySlider: React.FC<PriceSensitivitySliderProps> = ({
                   <td className="py-2.5 px-2 text-right">
                     {onSelectPrice && (
                       <button
+                        type="button"
                         onClick={() => onSelectPrice(pt.price)}
                         className="text-[11px] font-semibold text-brand-400 hover:text-brand-300 underline"
                       >

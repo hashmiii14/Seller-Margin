@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { getAffiliatePartners, AFFILIATE_DISCLAIMER_TEXT } from '@/lib/config/affiliates';
 import { Button } from '@/components/ui/Button';
-import { ExternalLink, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, Sparkles } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
 export const AffiliateDisclosure: React.FC<{ className?: string }> = ({ className }) => {

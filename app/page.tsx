@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: 'Sellrivo — Know Your Profit Before You Sell',
     description:
       'Free seller finance calculator for Etsy, Amazon FBA, Print-on-Demand, and ecommerce creators.',
-    url: 'https://sellermargin.com',
+    url: 'https://www.sellrivo.site',
     type: 'website',
   },
 };
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const websiteSchema = {
     name: 'Sellrivo',
-    url: 'https://sellermargin.com',
+    url: 'https://www.sellrivo.site',
     description: 'Etsy, Amazon FBA, and Print-on-Demand Seller Profit & Fee Calculators',
   };
 

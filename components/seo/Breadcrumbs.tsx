@@ -15,7 +15,7 @@ export const Breadcrumbs: React.FC<{ items: BreadcrumbItem[] }> = ({ items }) =>
     '@type': 'ListItem',
     position: index + 1,
     name: item.name,
-    item: `https://sellermargin.com${item.href}`,
+    item: `https://www.sellrivo.site${item.href}`,
   }));
 
   return (

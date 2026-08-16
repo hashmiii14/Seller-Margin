@@ -1,16 +1,19 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { SharedCalculationResult, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { AlertTriangle, Calculator, Sparkles, Target, Lightbulb } from 'lucide-react';
+import { AlertTriangle, Calculator, Target, Lightbulb, Printer, Code } from 'lucide-react';
+import { SmartAffiliateCard } from '@/components/monetization/SmartAffiliateCard';
+import { EmbedWidgetModal } from '@/components/calculators/EmbedWidgetModal';
 
 export interface ResultCardProps {
   result: SharedCalculationResult;
   currency: CurrencyCode;
   feeLabel?: string;
   hasInputValues?: boolean;
+  calculatorType?: 'etsy' | 'pod' | 'fba' | 'general';
 }
 
 export const ResultCard: React.FC<ResultCardProps> = ({
@@ -18,10 +21,11 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   currency,
   feeLabel = 'Total Platform Fees',
   hasInputValues = true,
+  calculatorType = 'etsy',
 }) => {
+  const [embedModalOpen, setEmbedModalOpen] = useState<boolean>(false);
   const isLoss = result.netProfit < 0;
 
-  // Empty state when user hasn't entered selling price yet
   if (!hasInputValues || result.grossRevenue === 0) {
     return (
       <div className="w-full rounded-xl border border-dashed border-slate-300 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 p-6 sm:p-8 text-center space-y-3">
@@ -42,6 +46,10 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   const salesFor500 = Math.ceil(500 / validProfit);
   const salesFor1000 = Math.ceil(1000 / validProfit);
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="w-full space-y-4">
       {/* Primary Net Profit Banner */}
@@ -56,9 +64,11 @@ export const ResultCard: React.FC<ResultCardProps> = ({
           <span className="text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">
             Estimated Net Profit
           </span>
-          <Badge variant={isLoss ? 'danger' : result.profitMargin >= 25 ? 'success' : 'warning'}>
-            {isLoss ? 'Selling at a Loss' : result.profitMargin >= 25 ? 'Strong Margin' : 'Moderate Margin'}
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant={isLoss ? 'danger' : result.profitMargin >= 25 ? 'success' : 'warning'}>
+              {isLoss ? 'Selling at a Loss' : result.profitMargin >= 25 ? 'Strong Margin' : 'Moderate Margin'}
+            </Badge>
+          </div>
         </div>
 
         <div className="flex items-baseline justify-between gap-3">
@@ -90,6 +100,22 @@ export const ResultCard: React.FC<ResultCardProps> = ({
             You keep {result.profitMargin}% of gross revenue as net profit after deducting fees and expenses.
           </p>
         )}
+
+        {/* Action Toolbar: Print & Embed */}
+        <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between gap-2 text-xs">
+          <button
+            onClick={handlePrint}
+            className="py-1.5 px-3 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition-colors"
+          >
+            <Printer className="w-3.5 h-3.5 text-slate-500" /> Print / Export PDF
+          </button>
+          <button
+            onClick={() => setEmbedModalOpen(true)}
+            className="py-1.5 px-3 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition-colors"
+          >
+            <Code className="w-3.5 h-3.5 text-brand-500" /> Embed Widget
+          </button>
+        </div>
       </div>
 
       {/* Grid of Key Secondary Metrics */}
@@ -131,6 +157,9 @@ export const ResultCard: React.FC<ResultCardProps> = ({
         </div>
       </div>
 
+      {/* Smart Monetization Affiliate Offer Card */}
+      <SmartAffiliateCard margin={result.profitMargin} calculatorType={calculatorType} />
+
       {/* Profit Goal Milestones */}
       {!isLoss && (
         <div className="p-4 rounded-xl bg-slate-900 text-white space-y-2">
@@ -164,6 +193,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({
           </li>
         </ul>
       </div>
+
+      <EmbedWidgetModal isOpen={embedModalOpen} onClose={() => setEmbedModalOpen(false)} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from '@/components/navigation/Header';
 import { Footer } from '@/components/navigation/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { CookieConsent } from '@/components/ui/CookieConsent';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sellrivo.site';
 
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );

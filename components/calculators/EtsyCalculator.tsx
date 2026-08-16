@@ -18,13 +18,13 @@ import { encodeCalculatorState } from '@/lib/calculators/url-state';
 import { RotateCcw, SlidersHorizontal, Globe, ExternalLink } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
-const EMPTY_INPUTS: EtsyInputs = {
-  sellingPrice: 0,
+const DEFAULT_INPUTS: EtsyInputs = {
+  sellingPrice: 29.99,
   quantity: 1,
-  shippingCharged: 0,
-  productCost: 0,
+  shippingCharged: 4.50,
+  productCost: 7.50,
   packagingCost: 0,
-  shippingCost: 0,
+  shippingCost: 4.50,
   advertisingCost: 0,
   otherCosts: 0,
   listingFee: 0.20,
@@ -45,7 +45,7 @@ export const EtsyCalculator: React.FC<{
   const countryConfig = ETSY_COUNTRY_FEES[selectedCountry] || ETSY_COUNTRY_FEES.US;
 
   const [inputs, setInputs] = useState<EtsyInputs>({
-    ...EMPTY_INPUTS,
+    ...DEFAULT_INPUTS,
     paymentProcessingRate: countryConfig.paymentProcessingRate,
     paymentProcessingFixed: countryConfig.paymentProcessingFixed,
     currency: (countryConfig.currency as CurrencyCode) || 'USD',
@@ -76,7 +76,7 @@ export const EtsyCalculator: React.FC<{
   const handleReset = () => {
     const cfg = ETSY_COUNTRY_FEES[selectedCountry] || ETSY_COUNTRY_FEES.US;
     setInputs({
-      ...EMPTY_INPUTS,
+      ...DEFAULT_INPUTS,
       paymentProcessingRate: cfg.paymentProcessingRate,
       paymentProcessingFixed: cfg.paymentProcessingFixed,
       currency: (cfg.currency as CurrencyCode) || 'USD',

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/_next/'],
     },
-    sitemap: 'https://sellermargin.com/sitemap.xml',
+    sitemap: 'https://www.sellrivo.site/sitemap.xml',
   };
 }

@@ -10,6 +10,8 @@ export type AnalyticsEventName =
   | 'currency_changed'
   | 'etsy_country_changed'
   | 'profit_goal_copied'
+  | 'embed_code_copied'
+  | 'sticky_cta_click'
   | 'affiliate_click'
   | 'compare_clicked'
   | 'guide_cta_clicked'
@@ -21,6 +23,8 @@ export interface AnalyticsEventParams {
   country?: string;
   target?: number;
   provider?: string;
+  partnerId?: string;
+  calculatorSlug?: string;
   guideSlug?: string;
   theme?: string;
   deviceCategory?: 'mobile' | 'desktop';

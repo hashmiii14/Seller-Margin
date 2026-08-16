@@ -19,12 +19,13 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const saved = localStorage.getItem('sellrivo_theme') as 'light' | 'dark';
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.classList.toggle('dark', saved === 'dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (saved === 'dark') {
       setTheme('dark');
       document.documentElement.classList.add('dark');
+    } else {
+      // Default to Light mode
+      setTheme('light');
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
@@ -32,7 +33,11 @@ export const Header: React.FC = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
     localStorage.setItem('sellrivo_theme', next);
-    document.documentElement.classList.toggle('dark', next === 'dark');
+    if (next === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
     trackEvent('theme_changed', { theme: next });
   };
 

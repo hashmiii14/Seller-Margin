@@ -10,6 +10,7 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
   { label: 'Etsy Calculator', href: '/etsy-profit-calculator', category: 'calculators', description: 'Estimate listing, transaction & processing fees' },
   { label: 'Amazon FBA', href: '/amazon-fba-calculator', category: 'calculators', description: 'Referral, fulfillment weight & storage costs' },
   { label: 'Print-on-Demand', href: '/pod-profit-calculator', category: 'calculators', description: 'Printify, Gelato & store margin calculator' },
+  { label: 'Profit Goal', href: '/profit-goal-calculator', category: 'calculators', description: 'Calculate required daily & monthly sales volume' },
   { label: 'Break-Even', href: '/break-even-calculator', category: 'calculators', description: 'Calculate unit volume & break-even price' },
   { label: 'Margin & Markup', href: '/profit-margin-calculator', category: 'calculators', description: 'Gross profit, net profit, margin & ROI' },
   { label: 'Guides', href: '/guides', category: 'resources', description: 'Educational articles and seller tutorials' },
@@ -21,6 +22,7 @@ export const NAVIGATION_ITEMS = MAIN_NAV_ITEMS;
 export const FOOTER_NAV_GROUPS = {
   calculators: [
     { label: 'Etsy Profit Calculator', href: '/etsy-profit-calculator' },
+    { label: 'Seller Profit Goal Calculator', href: '/profit-goal-calculator' },
     { label: 'Etsy Fee Calculator', href: '/etsy-fee-calculator' },
     { label: 'Amazon FBA Calculator', href: '/amazon-fba-calculator' },
     { label: 'Print-on-Demand Calculator', href: '/pod-profit-calculator' },

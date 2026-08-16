@@ -1,6 +1,130 @@
+export interface EtsyCountryFeeConfig {
+  countryCode: string;
+  countryName: string;
+  currency: string;
+  symbol: string;
+  paymentProcessingRate: number; // percentage
+  paymentProcessingFixed: number; // fixed amount in local currency
+  sourceUrl: string;
+  lastVerified: string;
+}
+
+export const ETSY_COUNTRY_FEES: Record<string, EtsyCountryFeeConfig> = {
+  US: {
+    countryCode: 'US',
+    countryName: 'United States',
+    currency: 'USD',
+    symbol: '$',
+    paymentProcessingRate: 3.0,
+    paymentProcessingFixed: 0.25,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  UK: {
+    countryCode: 'UK',
+    countryName: 'United Kingdom',
+    currency: 'GBP',
+    symbol: '£',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.20,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  CA: {
+    countryCode: 'CA',
+    countryName: 'Canada',
+    currency: 'CAD',
+    symbol: 'CA$',
+    paymentProcessingRate: 3.0,
+    paymentProcessingFixed: 0.25,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  AU: {
+    countryCode: 'AU',
+    countryName: 'Australia',
+    currency: 'AUD',
+    symbol: 'A$',
+    paymentProcessingRate: 3.0,
+    paymentProcessingFixed: 0.25,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  IN: {
+    countryCode: 'IN',
+    countryName: 'India',
+    currency: 'INR',
+    symbol: '₹',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 15.0,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  DE: {
+    countryCode: 'DE',
+    countryName: 'Germany',
+    currency: 'EUR',
+    symbol: '€',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  FR: {
+    countryCode: 'FR',
+    countryName: 'France',
+    currency: 'EUR',
+    symbol: '€',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  IT: {
+    countryCode: 'IT',
+    countryName: 'Italy',
+    currency: 'EUR',
+    symbol: '€',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  ES: {
+    countryCode: 'ES',
+    countryName: 'Spain',
+    currency: 'EUR',
+    symbol: '€',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  NL: {
+    countryCode: 'NL',
+    countryName: 'Netherlands',
+    currency: 'EUR',
+    symbol: '€',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+  NZ: {
+    countryCode: 'NZ',
+    countryName: 'New Zealand',
+    currency: 'NZD',
+    symbol: 'NZ$',
+    paymentProcessingRate: 4.0,
+    paymentProcessingFixed: 0.30,
+    sourceUrl: 'https://www.etsy.com/legal/fees/',
+    lastVerified: 'August 2026',
+  },
+};
+
 export const ETSY_FEE_ASSUMPTIONS = {
-  lastReviewed: '2026-08-01',
-  officialSource: 'Etsy Seller Handbook & Legal Fees Policy',
+  lastReviewed: 'August 2026',
+  officialSource: 'Etsy House Rules & Legal Fees Policy (https://www.etsy.com/legal/fees)',
   rules: [
     {
       id: 'etsy-listing',
@@ -27,20 +151,6 @@ export const ETSY_FEE_ASSUMPTIONS = {
       rate: 4.0,
       fixed: 0.20,
       description: '4.0% + £0.20 GBP per transaction for Etsy Payments in the United Kingdom.',
-    },
-    {
-      id: 'etsy-payment-ca',
-      name: 'Payment Processing (CA)',
-      rate: 3.0,
-      fixed: 0.25,
-      description: '3.0% + CA$0.25 CAD per transaction for Etsy Payments in Canada.',
-    },
-    {
-      id: 'etsy-payment-au',
-      name: 'Payment Processing (AU)',
-      rate: 3.0,
-      fixed: 0.25,
-      description: '3.0% + A$0.25 AUD per transaction for Etsy Payments in Australia.',
     },
     {
       id: 'etsy-offsite-ads-under10k',

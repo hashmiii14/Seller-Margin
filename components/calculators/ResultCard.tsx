@@ -4,7 +4,7 @@ import React from 'react';
 import { SharedCalculationResult, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { AlertTriangle, Calculator, Sparkles } from 'lucide-react';
+import { AlertTriangle, Calculator, Sparkles, Target, Lightbulb } from 'lucide-react';
 
 export interface ResultCardProps {
   result: SharedCalculationResult;
@@ -37,6 +37,10 @@ export const ResultCard: React.FC<ResultCardProps> = ({
       </div>
     );
   }
+
+  const validProfit = Math.max(0.01, result.netProfit);
+  const salesFor500 = Math.ceil(500 / validProfit);
+  const salesFor1000 = Math.ceil(1000 / validProfit);
 
   return (
     <div className="w-full space-y-4">
@@ -125,6 +129,40 @@ export const ResultCard: React.FC<ResultCardProps> = ({
             {formatCurrency(result.breakEvenPrice, currency)}
           </span>
         </div>
+      </div>
+
+      {/* Profit Goal Milestones */}
+      {!isLoss && (
+        <div className="p-4 rounded-xl bg-slate-900 text-white space-y-2">
+          <div className="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-wider">
+            <Target className="w-3.5 h-3.5" /> Profit Goal Milestones
+          </div>
+          <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
+            <div className="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/60">
+              <span className="text-slate-400 block text-[11px]">To Make {formatCurrency(500, currency)} Net:</span>
+              <span className="text-base font-bold text-white">{salesFor500} sales</span>
+            </div>
+            <div className="p-2.5 rounded-lg bg-slate-800/80 border border-slate-700/60">
+              <span className="text-slate-400 block text-[11px]">To Make {formatCurrency(1000, currency)} Net:</span>
+              <span className="text-base font-bold text-emerald-400">{salesFor1000} sales</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Actionable Optimization Tips */}
+      <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 text-xs">
+        <div className="flex items-center gap-1.5 font-bold text-slate-900 dark:text-slate-100">
+          <Lightbulb className="w-4 h-4 text-amber-500" /> Profit Optimization Insights
+        </div>
+        <ul className="space-y-1 text-slate-600 dark:text-slate-400 pl-5 list-disc">
+          <li>
+            Raising retail price by {formatCurrency(3, currency)} boosts net profit by approximately +{formatCurrency(2.70, currency)} per sale.
+          </li>
+          <li>
+            Negotiating a {formatCurrency(1.5, currency)} reduction in unit product costs directly increases take-home margin by +{(1.5 / Math.max(1, result.grossRevenue) * 100).toFixed(1)}%.
+          </li>
+        </ul>
       </div>
     </div>
   );

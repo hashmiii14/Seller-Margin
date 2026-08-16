@@ -1,10 +1,12 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | SellerMargin',
-  description: 'Understand how SellerMargin protects user privacy. Client-side calculations with zero personal data collection.',
+  title: 'Privacy Policy | Sellrivo',
+  description:
+    'Understand how Sellrivo protects user privacy. Client-side calculations with zero personal data collection.',
 };
 
 export default function PrivacyPolicyPage() {
@@ -12,32 +14,40 @@ export default function PrivacyPolicyPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <Breadcrumbs items={[{ name: 'Privacy Policy', href: '/privacy-policy' }]} />
 
-      <div className="space-y-3">
-        <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+      <JsonLd
+        type="WebPage"
+        data={{
+          name: 'Privacy Policy | Sellrivo',
+          description: 'Client-side processing privacy disclosures.',
+        }}
+      />
+
+      <div className="space-y-2">
+        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-100">
           Privacy Policy
         </h1>
-        <p className="text-xs text-slate-400">Last updated: August 1, 2026</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400">Effective Date: August 2026</p>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">1. Client-Side Financial Calculations</h2>
+      <div className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 text-sm sm:text-base space-y-4">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">1. Client-Side Financial Calculations</h3>
         <p>
-          SellerMargin operates as a client-side web application. All financial numbers, product costs, selling prices, and fee inputs entered into our calculators are processed locally in your web browser. We do not transmit, collect, or store your private business calculations on any server.
+          Sellrivo operates as a client-side web application. All financial numbers, product costs, selling prices, and fee inputs entered into our calculators are processed locally in your web browser. We do not transmit, collect, or store your private business calculations on any server.
         </p>
 
-        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">2. Local Storage</h2>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">2. Local Storage</h3>
         <p>
-          We use browser `localStorage` solely to persist non-sensitive user preferences such as dark/light mode themes and currency selections. You can clear this data at any time through your browser settings.
+          We use your browser’s <code className="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">localStorage</code> strictly to persist non-sensitive user preferences such as your visual theme selection (light or dark mode) and currency code choice.
         </p>
 
-        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">3. Analytics & Third-Party Cookies</h2>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">3. Third-Party Analytics & Cookies</h3>
         <p>
-          We may use privacy-conscious analytics tools (such as Plausible or Google Analytics) to monitor website traffic and usage trends. Analytics events do not include specific financial amounts entered by users.
+          Sellrivo uses privacy-focused anonymous telemetry (such as page view counts) to understand general usage trends. No personally identifiable information or exact financial calculation numbers are ever transmitted to third-party analytics services.
         </p>
 
-        <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">4. Contact Information</h2>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">4. Contacting Us</h3>
         <p>
-          If you contact us directly via email at <strong>mdhashmi955@gmail.com</strong>, we will use your email address only to respond to your inquiry.
+          If you have questions about this Privacy Policy, you may contact us at <a href="mailto:mdhashmi955@gmail.com" className="text-brand-600 dark:text-brand-400 underline">mdhashmi955@gmail.com</a>.
         </p>
       </div>
     </div>

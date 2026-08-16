@@ -1,101 +1,89 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
 import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Etsy vs Amazon FBA Fee & Profit Comparison | SellerMargin',
-  description: 'Compare Etsy vs Amazon FBA seller fees, pricing flexibility, fulfillment, handmade suitability, and profitability.',
+  title: 'Etsy vs Amazon FBA Fee & Profit Comparison | Sellrivo',
+  description:
+    'Compare Etsy vs Amazon FBA fees, fulfillment requirements, listing charges, audience scale, and profit margins to decide where to sell your products.',
 };
 
-export default function EtsyVsAmazonComparisonPage() {
+export default function EtsyVsAmazonPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-      <Breadcrumbs
-        items={[
-          { name: 'Compare', href: '/compare/etsy-vs-amazon' },
-          { name: 'Etsy vs Amazon FBA', href: '/compare/etsy-vs-amazon' },
-        ]}
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <Breadcrumbs items={[{ name: 'Etsy vs Amazon FBA', href: '/compare/etsy-vs-amazon' }]} />
+
+      <JsonLd
+        type="WebPage"
+        data={{
+          name: 'Etsy vs Amazon FBA Comparison',
+          description: 'Side-by-side comparison of Etsy and Amazon FBA selling fees.',
+        }}
       />
 
-      <div className="space-y-3">
+      <div className="space-y-3 text-left">
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
-          Etsy vs Amazon FBA: Fee & Profit Comparison
+          Etsy vs Amazon FBA: Fee & Profit Comparison (2026)
         </h1>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
-          Comparing two of the largest marketplace channels for online sellers. Understand the fee models, fulfillment options, and profit potential before choosing where to list.
+        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">
+          Compare referral fees, listing costs, fulfillment complexity, and profit margin potential for handmade, custom, and private label goods.
         </p>
       </div>
 
-      {/* Side by Side Platform Comparison Matrix */}
-      <div className="overflow-x-auto bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 sm:p-6">
-        <table className="w-full text-left text-sm min-w-[650px]">
-          <thead>
-            <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-100">
-              <th className="py-3 px-4 font-bold">Feature / Dimension</th>
-              <th className="py-3 px-4 font-bold text-orange-600 dark:text-orange-400">Etsy</th>
-              <th className="py-3 px-4 font-bold text-amber-600 dark:text-amber-400">Amazon FBA</th>
+      <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+        <table className="w-full text-left text-xs sm:text-sm">
+          <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 font-bold border-b border-slate-200 dark:border-slate-800">
+            <tr>
+              <th className="p-4">Feature / Fee</th>
+              <th className="p-4 text-orange-600 dark:text-orange-400">Etsy Marketplace</th>
+              <th className="p-4 text-amber-600 dark:text-amber-400">Amazon FBA</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
             <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Listing / Subscription Fee</td>
-              <td className="py-3.5 px-4">$0.20 USD per listing (auto-renews)</td>
-              <td className="py-3.5 px-4">$39.99/mo Professional Account or $0.99/sale Individual</td>
+              <td className="p-4 font-semibold">Listing Fee</td>
+              <td className="p-4">$0.20 USD per item (4-month renewal)</td>
+              <td className="p-4">$0 (Individual plan has $0.99/item fee)</td>
             </tr>
             <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Marketplace Referral Commission</td>
-              <td className="py-3.5 px-4">6.5% of sale price + shipping</td>
-              <td className="py-3.5 px-4">15% average (varies 8%–20% by category)</td>
+              <td className="p-4 font-semibold">Transaction Fee</td>
+              <td className="p-4 font-bold text-slate-900 dark:text-slate-100">6.5% of sale price + shipping</td>
+              <td className="p-4 font-bold text-slate-900 dark:text-slate-100">15% average referral fee</td>
             </tr>
             <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Payment Processing Fee</td>
-              <td className="py-3.5 px-4">3.0% + $0.25 USD (US Etsy Payments)</td>
-              <td className="py-3.5 px-4">Included in referral commission</td>
+              <td className="p-4 font-semibold">Payment Processing</td>
+              <td className="p-4">3.0% + $0.25 (US Etsy Payments)</td>
+              <td className="p-4">Included in Amazon referral fee</td>
             </tr>
             <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Fulfillment & Shipping</td>
-              <td className="py-3.5 px-4">Self-fulfilled or 3PL (seller ships)</td>
-              <td className="py-3.5 px-4">Amazon FBA handles prime storage & packing ($3.22+)</td>
+              <td className="p-4 font-semibold">Fulfillment</td>
+              <td className="p-4">Merchant ships or uses POD supplier</td>
+              <td className="p-4">Amazon picks, packs & ships (FBA fee applies)</td>
             </tr>
             <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Handmade & Custom Products</td>
-              <td className="py-3.5 px-4 text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" /> Ideal for custom craft & vintage
-              </td>
-              <td className="py-3.5 px-4 text-slate-500">Requires Amazon Handmade approval</td>
-            </tr>
-            <tr>
-              <td className="py-3.5 px-4 font-semibold text-slate-900 dark:text-slate-100">Average Total Platform Take %</td>
-              <td className="py-3.5 px-4 font-bold">10% – 16% of sale</td>
-              <td className="py-3.5 px-4 font-bold">25% – 45% of sale (including FBA)</td>
+              <td className="p-4 font-semibold">Best Product Types</td>
+              <td className="p-4">Handmade, vintage, craft supplies, POD</td>
+              <td className="p-4">Private label, brand registry, high volume</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      {/* CTA Section Triggering Calculators */}
-      <div className="p-8 rounded-2xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
-        <div>
-          <h3 className="text-xl font-bold">Calculate Your Expected Net Profit</h3>
-          <p className="text-xs text-slate-300 mt-1 max-w-xl">
-            Test your product costs on both calculators to see which platform delivers higher take-home profit for your specific item.
-          </p>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <Link href="/etsy-profit-calculator">
-            <Button variant="primary" size="md">
-              Calculate Etsy Profit
-            </Button>
-          </Link>
-          <Link href="/amazon-fba-calculator">
-            <Button variant="secondary" size="md">
-              Calculate FBA Profit
-            </Button>
-          </Link>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+        <Link href="/etsy-profit-calculator">
+          <Button size="lg" variant="brand" className="w-full justify-between">
+            <span>Open Etsy Calculator</span> <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
+        <Link href="/amazon-fba-calculator">
+          <Button size="lg" variant="outline" className="w-full justify-between">
+            <span>Open Amazon FBA Calculator</span> <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

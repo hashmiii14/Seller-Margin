@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://sellermargin.com'),
-  title: 'SellerMargin — Know Your Profit Before You Sell',
+  title: 'Sellrivo — Know Your Profit Before You Sell',
   description:
     'Calculate Etsy fees, Amazon FBA costs, print-on-demand margins, break-even prices, and take-home seller earnings in seconds.',
   keywords: [
@@ -17,18 +17,18 @@ export const metadata: Metadata = {
     'Break even calculator',
     'Profit margin calculator',
   ],
-  authors: [{ name: 'SellerMargin' }],
+  authors: [{ name: 'Sellrivo' }],
   openGraph: {
-    title: 'SellerMargin — Know Your Profit Before You Sell',
+    title: 'Sellrivo — Know Your Profit Before You Sell',
     description: 'Calculate real seller fees, profit margins, and break-even prices before listing products.',
     url: 'https://sellermargin.com',
-    siteName: 'SellerMargin',
+    siteName: 'Sellrivo',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SellerMargin — Know Your Profit Before You Sell',
+    title: 'Sellrivo — Know Your Profit Before You Sell',
     description: 'Calculate Etsy fees, Amazon FBA costs, and take-home seller earnings instantly.',
   },
   robots: {
@@ -48,7 +48,7 @@ export default function RootLayout({
         <JsonLd
           type="WebSite"
           data={{
-            name: 'SellerMargin',
+            name: 'Sellrivo',
             url: 'https://sellermargin.com',
             potentialAction: {
               '@type': 'SearchAction',

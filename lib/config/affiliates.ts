@@ -36,4 +36,4 @@ export function getAffiliatePartners(): Record<string, AffiliatePartner> {
 }
 
 export const AFFILIATE_DISCLAIMER_TEXT =
-  'Disclosure: SellerMargin may receive partner compensation if you sign up through our referral links. This helps keep our calculator 100% free with zero registration required.';
+  'Disclosure: Sellrivo may receive partner compensation if you sign up through our referral links. This helps keep our calculator 100% free with zero registration required.';

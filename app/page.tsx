@@ -19,11 +19,11 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'SellerMargin — Etsy & Amazon FBA Seller Profit & Fee Calculator',
+  title: 'Sellrivo — Etsy & Amazon FBA Seller Profit & Fee Calculator',
   description:
     'Calculate real marketplace fees, product costs, shipping, advertising, break-even price, and net profit before you list on Etsy, Amazon FBA, or Print-on-Demand.',
   openGraph: {
-    title: 'SellerMargin — Know Your Profit Before You Sell',
+    title: 'Sellrivo — Know Your Profit Before You Sell',
     description:
       'Free seller finance calculator for Etsy, Amazon FBA, Print-on-Demand, and ecommerce creators.',
     url: 'https://sellermargin.com',
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const websiteSchema = {
-    name: 'SellerMargin',
+    name: 'Sellrivo',
     url: 'https://sellermargin.com',
     description: 'Etsy, Amazon FBA, and Print-on-Demand Seller Profit & Fee Calculators',
   };
 
   const softwareSchema = {
-    name: 'SellerMargin Profit Calculator',
+    name: 'Sellrivo Profit Calculator',
     operatingSystem: 'Any',
     applicationCategory: 'FinanceApplication',
     offers: {
@@ -265,7 +265,7 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">How SellerMargin Works</h2>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">How Sellrivo Works</h2>
               <p className="text-xs sm:text-sm text-slate-400">
                 Four clear steps to protect your margins before listing inventory.
               </p>
@@ -368,16 +368,16 @@ export default function HomePage() {
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="text-center space-y-2">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Everything you need to know about SellerMargin</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Everything you need to know about Sellrivo</p>
           </div>
 
           <div className="space-y-4">
             <div className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <HelpCircle className="w-4 h-4 text-brand-600 shrink-0" /> Is SellerMargin really 100% free?
+                <HelpCircle className="w-4 h-4 text-brand-600 shrink-0" /> Is Sellrivo really 100% free?
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400 pl-6">
-                Yes. SellerMargin is completely free to use with zero registration, account creation, or hidden subscription fees required.
+                Yes. Sellrivo is completely free to use with zero registration, account creation, or hidden subscription fees required.
               </p>
             </div>
 

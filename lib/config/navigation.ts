@@ -35,7 +35,7 @@ export const FOOTER_NAV_GROUPS = {
     { label: 'Margin vs Markup Guide', href: '/guides/margin-vs-markup' },
   ],
   company: [
-    { label: 'About SellerMargin', href: '/about' },
+    { label: 'About Sellrivo', href: '/about' },
     { label: 'Contact & Feedback', href: '/contact' },
   ],
   legal: [

@@ -1,36 +1,37 @@
 import React from 'react';
 import Link from 'next/link';
 import { FOOTER_NAV_GROUPS } from '@/lib/config/navigation';
-import { ShieldCheck, Heart } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-300 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-          {/* Brand Column */}
-          <div className="col-span-2 space-y-4">
+    <footer className="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand Info */}
+          <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-base">
-                $
+              <div className="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center font-black text-sm">
+                SR
               </div>
-              <span className="text-lg font-black text-white tracking-tight">
-                Seller<span className="text-brand-400">Margin</span>
+              <span className="font-black text-xl text-white tracking-tight">
+                Sellrivo
               </span>
             </Link>
-            <p className="text-slate-400 leading-relaxed max-w-sm">
-              SellerMargin is a fast, trustworthy, mobile-first profitability calculator suite for Etsy, Amazon FBA, Print-on-Demand, and ecommerce sellers. Know your real profit before you sell.
+            <p className="text-slate-400 text-xs max-w-sm leading-relaxed">
+              Know Your Profit Before You Sell. Fast, browser-based profit & fee calculators built for Etsy sellers, Amazon FBA merchants, Print-on-Demand creators, and ecommerce brands.
             </p>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 text-[11px]">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>100% Free • No Registration Required • Browser-Based</span>
+            <div className="flex items-center gap-2 text-slate-300 pt-1">
+              <Mail className="w-4 h-4 text-brand-400" />
+              <a href="mailto:mdhashmi955@gmail.com" className="hover:text-white transition-colors font-medium">
+                mdhashmi955@gmail.com
+              </a>
             </div>
           </div>
 
-          {/* Nav Group: Calculators */}
-          <div>
-            <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Calculators</h4>
+          {/* Nav Group 1: Calculators */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-white text-xs uppercase tracking-wider">Calculators</h4>
             <ul className="space-y-2">
               {FOOTER_NAV_GROUPS.calculators.map((item) => (
                 <li key={item.href}>
@@ -42,9 +43,9 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Nav Group: Resources */}
-          <div>
-            <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Resources</h4>
+          {/* Nav Group 2: Resources */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-white text-xs uppercase tracking-wider">Resources</h4>
             <ul className="space-y-2">
               {FOOTER_NAV_GROUPS.resources.map((item) => (
                 <li key={item.href}>
@@ -56,18 +57,11 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Nav Group: Company & Legal */}
-          <div>
-            <h4 className="font-bold text-white uppercase tracking-wider mb-3 text-[11px]">Legal & Info</h4>
+          {/* Nav Group 3: Company & Legal */}
+          <div className="space-y-3">
+            <h4 className="font-bold text-white text-xs uppercase tracking-wider">Company & Legal</h4>
             <ul className="space-y-2">
-              {FOOTER_NAV_GROUPS.company.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="hover:text-white transition-colors">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              {FOOTER_NAV_GROUPS.legal.map((item) => (
+              {FOOTER_NAV_GROUPS.company.concat(FOOTER_NAV_GROUPS.legal).map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="hover:text-white transition-colors">
                     {item.label}
@@ -78,14 +72,10 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Disclaimer & Copyright */}
-        <div className="pt-8 border-t border-slate-800 text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
-          <p>
-            © {new Date().getFullYear()} SellerMargin. All rights reserved. SellerMargin is an independent software tool and is not affiliated with, endorsed by, or sponsored by Etsy, Inc. or Amazon.com, Inc.
-          </p>
-          <p className="flex items-center gap-1 shrink-0">
-            Built for sellers worldwide
-          </p>
+        {/* Footer Disclaimer & Copyright */}
+        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+          <p>© {new Date().getFullYear()} Sellrivo. Independent software tool. Not affiliated with Etsy, Amazon, Printify, or Gelato.</p>
+          <p>Calculations are estimates based on published fee schedules.</p>
         </div>
       </div>
     </footer>

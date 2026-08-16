@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { CommandPalette } from '@/components/navigation/CommandPalette';
-import { NAVIGATION_ITEMS } from '@/lib/config/navigation';
+import { MAIN_NAV_ITEMS } from '@/lib/config/navigation';
 import { Calculator, Sun, Moon, Search, Menu, X, ChevronDown } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    const saved = localStorage.getItem('sellermargin_theme') as 'light' | 'dark';
+    const saved = localStorage.getItem('sellrivo_theme') as 'light' | 'dark';
     if (saved) {
       setTheme(saved);
       document.documentElement.classList.toggle('dark', saved === 'dark');
@@ -31,28 +31,28 @@ export const Header: React.FC = () => {
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
-    localStorage.setItem('sellermargin_theme', next);
+    localStorage.setItem('sellrivo_theme', next);
     document.documentElement.classList.toggle('dark', next === 'dark');
     trackEvent('theme_changed', { theme: next });
   };
 
-  const calculatorItems = NAVIGATION_ITEMS.filter((item) => item.category === 'calculators');
-  const otherItems = NAVIGATION_ITEMS.filter((item) => item.category !== 'calculators');
+  const calculatorItems = MAIN_NAV_ITEMS.filter((item) => item.category === 'calculators');
+  const otherItems = MAIN_NAV_ITEMS.filter((item) => item.category !== 'calculators');
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition-transform">
-            SM
+          <div className="w-9 h-9 rounded-xl bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-black text-base shadow-sm group-hover:scale-105 transition-transform">
+            SR
           </div>
           <div className="flex flex-col">
             <span className="font-black text-lg text-slate-900 dark:text-slate-100 tracking-tight leading-none">
-              SellerMargin
+              Sellrivo
             </span>
             <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 leading-tight">
-              Seller Profit & Fee Calculators
+              Know Your Profit Before You Sell
             </span>
           </div>
         </Link>

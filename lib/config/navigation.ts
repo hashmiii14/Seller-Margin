@@ -3,16 +3,20 @@ export interface NavItem {
   href: string;
   badge?: string;
   description?: string;
+  category?: string;
 }
 
 export const MAIN_NAV_ITEMS: NavItem[] = [
-  { label: 'Etsy Calculator', href: '/etsy-profit-calculator', description: 'Estimate listing, transaction & processing fees' },
-  { label: 'Amazon FBA', href: '/amazon-fba-calculator', description: 'Referral, fulfillment weight & storage costs' },
-  { label: 'Print-on-Demand', href: '/pod-profit-calculator', description: 'Printify, Gelato & store margin calculator' },
-  { label: 'Break-Even', href: '/break-even-calculator', description: 'Calculate unit volume & break-even price' },
-  { label: 'Margin & Markup', href: '/profit-margin-calculator', description: 'Gross profit, net profit, margin & ROI' },
-  { label: 'Pricing Assistant', href: '/calculators/pricing', badge: 'Smart', description: 'Calculate what to charge for target margin' },
+  { label: 'Etsy Calculator', href: '/etsy-profit-calculator', category: 'calculators', description: 'Estimate listing, transaction & processing fees' },
+  { label: 'Amazon FBA', href: '/amazon-fba-calculator', category: 'calculators', description: 'Referral, fulfillment weight & storage costs' },
+  { label: 'Print-on-Demand', href: '/pod-profit-calculator', category: 'calculators', description: 'Printify, Gelato & store margin calculator' },
+  { label: 'Break-Even', href: '/break-even-calculator', category: 'calculators', description: 'Calculate unit volume & break-even price' },
+  { label: 'Margin & Markup', href: '/profit-margin-calculator', category: 'calculators', description: 'Gross profit, net profit, margin & ROI' },
+  { label: 'Guides', href: '/guides', category: 'resources', description: 'Educational articles and seller tutorials' },
+  { label: 'Compare', href: '/compare/etsy-vs-amazon', category: 'resources', description: 'Etsy vs Amazon FBA comparison' },
 ];
+
+export const NAVIGATION_ITEMS = MAIN_NAV_ITEMS;
 
 export const FOOTER_NAV_GROUPS = {
   calculators: [

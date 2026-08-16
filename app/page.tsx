@@ -11,7 +11,6 @@ import {
   Zap,
   Globe,
   TrendingUp,
-  DollarSign,
   ArrowRight,
   Sparkles,
   Layers,
@@ -34,16 +33,12 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
     name: 'SellerMargin',
     url: 'https://sellermargin.com',
     description: 'Etsy, Amazon FBA, and Print-on-Demand Seller Profit & Fee Calculators',
   };
 
   const softwareSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
     name: 'SellerMargin Profit Calculator',
     operatingSystem: 'Any',
     applicationCategory: 'FinanceApplication',
@@ -56,8 +51,8 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={websiteSchema} />
-      <JsonLd data={softwareSchema} />
+      <JsonLd type="WebSite" data={websiteSchema} />
+      <JsonLd type="SoftwareApplication" data={softwareSchema} />
 
       <div className="space-y-20 py-8 sm:py-12">
         {/* HERO SECTION ABOVE THE FOLD */}
@@ -132,7 +127,6 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Etsy Calculator Card */}
             <Link
               href="/etsy-profit-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 hover:shadow-lg transition-all space-y-4"
@@ -155,7 +149,6 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Amazon FBA Card */}
             <Link
               href="/amazon-fba-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 hover:shadow-lg transition-all space-y-4"
@@ -178,7 +171,6 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* POD Calculator Card */}
             <Link
               href="/pod-profit-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-lg transition-all space-y-4"
@@ -201,7 +193,6 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Profit Margin Calculator */}
             <Link
               href="/profit-margin-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-lg transition-all space-y-4"
@@ -224,7 +215,6 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Break-Even Calculator */}
             <Link
               href="/break-even-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 hover:shadow-lg transition-all space-y-4"
@@ -247,7 +237,6 @@ export default function HomePage() {
               </div>
             </Link>
 
-            {/* Smart Pricing Assistant */}
             <Link
               href="/etsy-pricing-calculator"
               className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:shadow-lg transition-all space-y-4"

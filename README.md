@@ -1,6 +1,6 @@
-# SellerMargin — Etsy & Amazon FBA Seller Profit Calculator
+# Sellrivo — Etsy & Amazon FBA Seller Profit Calculator
 
-**SellerMargin** is a fast, trustworthy, mobile-first calculator site for Etsy sellers, Amazon FBA sellers, print-on-demand creators, handmade artisans, and small ecommerce businesses. Know your real selling fees, profit margins, break-even prices, and take-home earnings before you list or sell a product.
+**Sellerrivo** is a fast, trustworthy, mobile-first calculator site for Etsy sellers, Amazon FBA sellers, print-on-demand creators, handmade artisans, and small ecommerce businesses. Know your real selling fees, profit margins, break-even prices, and take-home earnings before you list or sell a product.
 
 ## Key Features
 

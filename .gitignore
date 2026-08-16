@@ -2,6 +2,7 @@
 /node_modules
 /.pnpm
 /.yarn
+package-lock.json
 
 # next.js build output
 /.next/

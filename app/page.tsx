@@ -417,6 +417,46 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ABOUT & CONTACT SECTION */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+          <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-6">
+              <div className="space-y-1">
+                <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
+                  <ShieldCheck className="w-3.5 h-3.5" /> High-Trust Utility
+                </div>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-slate-100">About Sellrivo</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xl">
+                  Sellrivo was built with one clear mission: to provide 100% free, transparent, and accurate fee calculators for online sellers across Etsy, Amazon FBA, Print-on-Demand, and Shopify.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <Link href="/about">
+                  <Button size="sm" variant="outline">Learn More</Button>
+                </Link>
+                <Link href="/contact">
+                  <Button size="sm" variant="brand">Contact Support</Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/60 dark:border-slate-800/60 space-y-1.5">
+                <span className="font-bold text-slate-900 dark:text-slate-100 block">🔒 100% Client-Side Privacy</span>
+                <p className="text-slate-600 dark:text-slate-400">All financial calculations execute locally inside your web browser. We never store or transmit your sensitive pricing numbers.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/60 dark:border-slate-800/60 space-y-1.5">
+                <span className="font-bold text-slate-900 dark:text-slate-100 block">⚡ Verified 2026 Fee Rules</span>
+                <p className="text-slate-600 dark:text-slate-400">Fee percentages and fixed charges are continuously verified against official marketplace House Rules for US, UK, CA, AU, & IN.</p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/60 dark:border-slate-800/60 space-y-1.5">
+                <span className="font-bold text-slate-900 dark:text-slate-100 block">✉️ Direct Team Contact</span>
+                <p className="text-slate-600 dark:text-slate-400">Questions or fee updates? Email us directly at <a href="mailto:mdhashmi955@gmail.com" className="text-brand-600 dark:text-brand-400 font-bold hover:underline">mdhashmi955@gmail.com</a>.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

@@ -14,7 +14,8 @@ export const MAIN_NAV_ITEMS: NavItem[] = [
   { label: 'Break-Even', href: '/break-even-calculator', category: 'calculators', description: 'Calculate unit volume & break-even price' },
   { label: 'Margin & Markup', href: '/profit-margin-calculator', category: 'calculators', description: 'Gross profit, net profit, margin & ROI' },
   { label: 'Guides', href: '/guides', category: 'resources', description: 'Educational articles and seller tutorials' },
-  { label: 'Compare', href: '/compare/etsy-vs-amazon', category: 'resources', description: 'Etsy vs Amazon FBA comparison' },
+  { label: 'About', href: '/about', category: 'company', description: 'Mission statement & calculation methodology' },
+  { label: 'Contact', href: '/contact', category: 'company', description: 'Get in touch with Sellrivo team' },
 ];
 
 export const NAVIGATION_ITEMS = MAIN_NAV_ITEMS;
@@ -33,8 +34,8 @@ export const FOOTER_NAV_GROUPS = {
     { label: 'Seller Guides', href: '/guides' },
     { label: 'Etsy vs Amazon Profit Comparison', href: '/compare/etsy-vs-amazon' },
     { label: 'How to Price Handmade Products', href: '/guides/how-to-price-handmade-products' },
-    { label: 'Etsy Fees Explained', href: '/guides/etsy-fees-explained' },
-    { label: 'Margin vs Markup Guide', href: '/guides/margin-vs-markup' },
+    { label: 'Etsy Fees Explained', href: '/guides/etsy-fees-explained-2026' },
+    { label: 'Margin vs Markup Guide', href: '/guides/margin-vs-markup-formula' },
   ],
   company: [
     { label: 'About Sellrivo', href: '/about' },

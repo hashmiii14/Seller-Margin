@@ -80,7 +80,7 @@ Required Monthly Revenue: ${formatCurrency(requiredRevenue, currency)}`;
             <Select
               label="Display Currency"
               value={currency}
-              onChange={(v) => setCurrency(v as CurrencyCode)}
+              onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
               options={Object.values(CURRENCIES).map((c) => ({
                 value: c.code,
                 label: `${c.name} (${c.symbol})`,

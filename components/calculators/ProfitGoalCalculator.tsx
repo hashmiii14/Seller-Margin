@@ -5,8 +5,8 @@ import { CurrencyInput, NumberInput } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { CurrencyCode, CURRENCIES, formatCurrency } from '@/lib/config/currencies';
-import { Card, CardHeader, CardBody } from '@/components/ui/Card';
-import { Target, TrendingUp, Calendar, ShoppingBag, Sparkles, Copy, Check } from 'lucide-react';
+import { Card } from '@/components/ui/Card';
+import { Target, TrendingUp, Calendar, Copy, Check } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
 export const ProfitGoalCalculator: React.FC = () => {
@@ -70,12 +70,12 @@ Required Monthly Revenue: ${formatCurrency(requiredRevenue, currency)}`;
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Input Form */}
         <Card className="lg:col-span-5 border-slate-200 dark:border-slate-800">
-          <CardHeader>
+          <div className="border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
             <h3 className="font-bold text-base text-slate-900 dark:text-slate-100 flex items-center gap-2">
               <Calendar className="w-4 h-4 text-brand-600" /> Goal Assumptions
             </h3>
-          </CardHeader>
-          <CardBody className="space-y-4">
+          </div>
+          <div className="space-y-4">
             <Select
               label="Display Currency"
               value={currency}
@@ -118,7 +118,7 @@ Required Monthly Revenue: ${formatCurrency(requiredRevenue, currency)}`;
               max={31}
               step={1}
             />
-          </CardBody>
+          </div>
         </Card>
 
         {/* Right Dashboard & Results */}

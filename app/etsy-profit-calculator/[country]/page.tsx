@@ -6,24 +6,26 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { LOCALIZED_PAGES } from '@/lib/config/seo-pages';
 import { notFound } from 'next/navigation';
 
+type LocalizedKey = keyof typeof LOCALIZED_PAGES;
+
 export async function generateMetadata({ params }: { params: Promise<{ country: string }> }): Promise<Metadata> {
   const { country } = await params;
-  const key = `etsy-profit-calculator-${country.toLowerCase()}`;
+  const key = country.toLowerCase() as LocalizedKey;
   const pageData = LOCALIZED_PAGES[key];
 
   if (!pageData) {
-    return { title: 'Etsy Profit Calculator | SellerMargin' };
+    return { title: 'Etsy Profit Calculator | Sellrivo' };
   }
 
   return {
     title: pageData.title,
-    description: pageData.description,
+    description: `Calculate Etsy fees and profit in ${pageData.currency} for ${pageData.country} sellers.`,
   };
 }
 
 export default async function LocalizedEtsyCalculatorPage({ params }: { params: Promise<{ country: string }> }) {
   const { country } = await params;
-  const key = `etsy-profit-calculator-${country.toLowerCase()}`;
+  const key = country.toLowerCase() as LocalizedKey;
   const pageData = LOCALIZED_PAGES[key];
 
   if (!pageData) {
@@ -41,14 +43,14 @@ export default async function LocalizedEtsyCalculatorPage({ params }: { params: 
 
       <div className="space-y-2">
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-100">
-          {pageData.h1}
+          {pageData.title}
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl">
-          {pageData.intro}
+          Calculate marketplace fees and net profit in {pageData.currency} for sellers in {pageData.country}.
         </p>
       </div>
 
-      <EtsyCalculator initialParams={{ currency: pageData.currency || 'USD' }} />
+      <EtsyCalculator initialParams={{ currency: pageData.currency as any }} initialCountry={country.toUpperCase()} />
     </div>
   );
 }

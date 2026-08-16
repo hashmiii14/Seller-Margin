@@ -118,3 +118,38 @@ export const PercentageInput: React.FC<PercentageInputProps> = ({
     />
   );
 };
+
+export interface NumberInputProps extends Omit<InputProps, 'value' | 'onChange' | 'type'> {
+  value: number | string;
+  onChange: (val: number) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  placeholder?: string;
+}
+
+export const NumberInput: React.FC<NumberInputProps> = ({
+  value,
+  onChange,
+  min = 0,
+  max,
+  step = 1,
+  placeholder = '0',
+  ...props
+}) => {
+  return (
+    <Input
+      type="number"
+      step={step}
+      min={min}
+      max={max}
+      placeholder={placeholder}
+      value={value === 0 || value === '0' || value === '' ? '' : value}
+      onChange={(e) => {
+        const val = parseFloat(e.target.value);
+        onChange(isNaN(val) ? 0 : val);
+      }}
+      {...props}
+    />
+  );
+};

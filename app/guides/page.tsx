@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { GUIDES } from '@/lib/config/guides';
-import { BookOpen, Clock, User, ArrowRight } from 'lucide-react';
+import { BookOpen, Clock, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Ecommerce Seller Finance & Pricing Guides | Sellrivo',
@@ -40,7 +40,7 @@ export default function GuidesIndexPage() {
                   <BookOpen className="w-3.5 h-3.5" /> Guide
                 </span>
                 <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5" /> {guide.readingTime}
+                  <Clock className="w-3.5 h-3.5" /> {guide.readTime}
                 </span>
               </div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-brand-600 transition-colors">

@@ -25,11 +25,11 @@ export const BreakEvenCalculator: React.FC = () => {
   const result = calculateBreakEven(inputs);
 
   const samplePrices = [
-    inputs.breakEvenPrice * 0.9,
-    inputs.breakEvenPrice,
-    inputs.breakEvenPrice * 1.25,
-    inputs.priceForTargetProfit,
-    inputs.priceForTargetProfit * 1.5,
+    result.breakEvenPrice * 0.9,
+    result.breakEvenPrice,
+    result.breakEvenPrice * 1.25,
+    result.priceForTargetProfit,
+    result.priceForTargetProfit * 1.5,
   ].filter((p) => p > 0);
 
   return (

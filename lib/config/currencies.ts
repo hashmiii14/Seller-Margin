@@ -6,6 +6,8 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
   EUR: { code: 'EUR', symbol: '€', name: 'Euro (€)', locale: 'de-DE' },
   CAD: { code: 'CAD', symbol: 'CA$', name: 'Canadian Dollar (CA$)', locale: 'en-CA' },
   AUD: { code: 'AUD', symbol: 'A$', name: 'Australian Dollar (A$)', locale: 'en-AU' },
+  INR: { code: 'INR', symbol: '₹', name: 'Indian Rupee (₹)', locale: 'en-IN' },
+  NZD: { code: 'NZD', symbol: 'NZ$', name: 'New Zealand Dollar (NZ$)', locale: 'en-NZ' },
 };
 
 export function formatCurrency(amount: number, currencyCode: CurrencyCode = 'USD'): string {

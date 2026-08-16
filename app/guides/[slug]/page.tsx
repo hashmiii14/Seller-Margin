@@ -18,7 +18,7 @@ export async function generateMetadata({
 
   return {
     title: `${guide.title} | Sellrivo Guide`,
-    description: guide.metaDescription || guide.excerpt,
+    description: guide.excerpt,
   };
 }
 
@@ -48,8 +48,8 @@ export default async function GuidePage({
         data={{
           headline: guide.title,
           description: guide.excerpt,
-          author: { '@type': 'Person', name: guide.author },
-          datePublished: guide.publishedAt,
+          author: { '@type': 'Organization', name: 'Sellrivo Editorial Team' },
+          datePublished: guide.publishedDate,
         }}
       />
 
@@ -58,11 +58,11 @@ export default async function GuidePage({
           {guide.title}
         </h1>
         <div className="flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400 border-b border-slate-200 dark:border-slate-800 pb-4">
-          <span>By {guide.author}</span>
+          <span>By Sellrivo Editorial Team</span>
           <span>•</span>
-          <span>Published: {guide.publishedAt}</span>
+          <span>Published: {guide.publishedDate}</span>
           <span>•</span>
-          <span>{guide.readingTime}</span>
+          <span>{guide.readTime}</span>
         </div>
       </div>
 
@@ -71,16 +71,9 @@ export default async function GuidePage({
           {guide.excerpt}
         </p>
 
-        {guide.content.map((sec, idx) => (
-          <div key={idx} className="space-y-3 pt-2">
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">
-              {sec.heading}
-            </h2>
-            <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-              {sec.body}
-            </p>
-          </div>
-        ))}
+        <div className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4 whitespace-pre-line">
+          {guide.content}
+        </div>
       </article>
     </div>
   );

@@ -3,7 +3,7 @@ import { SEO_PAGES, LOCALIZED_PAGES } from '@/lib/config/seo-pages';
 import { GUIDES } from '@/lib/config/guides';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://sellermargin.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sellrivo.site';
 
   const staticRoutes = [
     '',

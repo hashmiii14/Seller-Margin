@@ -4,8 +4,10 @@ import { Header } from '@/components/navigation/Header';
 import { Footer } from '@/components/navigation/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sellrivo.site';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sellermargin.com'),
+  metadataBase: new URL(siteUrl),
   title: 'Sellrivo — Know Your Profit Before You Sell',
   description:
     'Calculate Etsy fees, Amazon FBA costs, print-on-demand margins, break-even prices, and take-home seller earnings in seconds.',
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sellrivo — Know Your Profit Before You Sell',
     description: 'Calculate real seller fees, profit margins, and break-even prices before listing products.',
-    url: 'https://sellermargin.com',
+    url: siteUrl,
     siteName: 'Sellrivo',
     locale: 'en_US',
     type: 'website',
@@ -49,10 +51,10 @@ export default function RootLayout({
           type="WebSite"
           data={{
             name: 'Sellrivo',
-            url: 'https://sellermargin.com',
+            url: siteUrl,
             potentialAction: {
               '@type': 'SearchAction',
-              target: 'https://sellermargin.com/etsy-profit-calculator?price={search_term_string}',
+              target: `${siteUrl}/etsy-profit-calculator?price={search_term_string}`,
               'query-input': 'required name=search_term_string',
             },
           }}

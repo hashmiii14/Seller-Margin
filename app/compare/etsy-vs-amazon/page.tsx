@@ -4,12 +4,14 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import { AdSlot } from '@/components/ads/AdSlot';
+import { SmartAffiliateCard } from '@/components/monetization/SmartAffiliateCard';
 
 export const metadata: Metadata = {
-  title: 'Etsy vs Amazon FBA Fee & Profit Comparison | Sellrivo',
+  title: 'Etsy vs Amazon FBA Fee & Profit Comparison (2026) | Sellrivo',
   description:
-    'Compare Etsy vs Amazon FBA fees, fulfillment requirements, listing charges, audience scale, and profit margins to decide where to sell your products.',
+    'Detailed side-by-side fee comparison between Etsy and Amazon FBA. Compare referral fees, fulfillment costs, listing charges, and profit margins.',
 };
 
 export default function EtsyVsAmazonPage() {
@@ -25,7 +27,12 @@ export default function EtsyVsAmazonPage() {
         }}
       />
 
+      <AdSlot type="leaderboard" />
+
       <div className="space-y-3 text-left">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
+          <Sparkles className="w-3.5 h-3.5" /> Platform Showdown
+        </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
           Etsy vs Amazon FBA: Fee & Profit Comparison (2026)
         </h1>
@@ -34,6 +41,7 @@ export default function EtsyVsAmazonPage() {
         </p>
       </div>
 
+      {/* Comparison Table */}
       <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
         <table className="w-full text-left text-xs sm:text-sm">
           <thead className="bg-slate-50 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 font-bold border-b border-slate-200 dark:border-slate-800">
@@ -50,7 +58,7 @@ export default function EtsyVsAmazonPage() {
               <td className="p-4">$0 (Individual plan has $0.99/item fee)</td>
             </tr>
             <tr>
-              <td className="p-4 font-semibold">Transaction Fee</td>
+              <td className="p-4 font-semibold">Base Commission Fee</td>
               <td className="p-4 font-bold text-slate-900 dark:text-slate-100">6.5% of sale price + shipping</td>
               <td className="p-4 font-bold text-slate-900 dark:text-slate-100">15% average referral fee</td>
             </tr>
@@ -62,7 +70,17 @@ export default function EtsyVsAmazonPage() {
             <tr>
               <td className="p-4 font-semibold">Fulfillment</td>
               <td className="p-4">Merchant ships or uses POD supplier</td>
-              <td className="p-4">Amazon picks, packs & ships (FBA fee applies)</td>
+              <td className="p-4">Amazon picks, packs & ships ($3.50+ / unit)</td>
+            </tr>
+            <tr>
+              <td className="p-4 font-semibold">Monthly Storage Fees</td>
+              <td className="p-4">$0 (Seller handles storage)</td>
+              <td className="p-4">$0.87 / cu.ft monthly storage</td>
+            </tr>
+            <tr>
+              <td className="p-4 font-semibold">Average Total Fee Burden</td>
+              <td className="p-4 font-bold text-emerald-600 dark:text-emerald-400">11% – 15% of sale price</td>
+              <td className="p-4 font-bold text-amber-600 dark:text-amber-400">30% – 45% of sale price</td>
             </tr>
             <tr>
               <td className="p-4 font-semibold">Best Product Types</td>
@@ -72,6 +90,13 @@ export default function EtsyVsAmazonPage() {
           </tbody>
         </table>
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <SmartAffiliateCard partnerId="junglescout" />
+        <SmartAffiliateCard partnerId="helium10" />
+      </div>
+
+      <AdSlot type="responsive" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
         <Link href="/etsy-profit-calculator">

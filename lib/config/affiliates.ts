@@ -6,7 +6,7 @@ export interface AffiliatePartner {
   badgeText: string;
   description: string;
   ctaText: string;
-  category: 'pod' | 'store' | 'keywords' | 'shipping';
+  category: 'pod' | 'store' | 'keywords' | 'shipping' | 'amazon';
 }
 
 export function getAffiliatePartners(): Record<string, AffiliatePartner> {
@@ -15,6 +15,9 @@ export function getAffiliatePartners(): Record<string, AffiliatePartner> {
   const everbeeUrl = process.env.NEXT_PUBLIC_EVERBEE_AFFILIATE_URL || 'https://everbee.io';
   const shopifyUrl = process.env.NEXT_PUBLIC_SHOPIFY_AFFILIATE_URL || 'https://www.shopify.com';
   const pirateShipUrl = process.env.NEXT_PUBLIC_PIRATESHIP_AFFILIATE_URL || 'https://www.pirateship.com';
+  const jungleScoutUrl = process.env.NEXT_PUBLIC_JUNGLESCOUT_AFFILIATE_URL || 'https://www.junglescout.com';
+  const helium10Url = process.env.NEXT_PUBLIC_HELIUM10_AFFILIATE_URL || 'https://www.helium10.com';
+  const erankUrl = process.env.NEXT_PUBLIC_ERANK_AFFILIATE_URL || 'https://erank.com';
 
   return {
     printify: {
@@ -47,6 +50,16 @@ export function getAffiliatePartners(): Record<string, AffiliatePartner> {
       ctaText: 'Try EverBee Free',
       category: 'keywords',
     },
+    erank: {
+      id: 'erank',
+      name: 'eRank',
+      url: erankUrl,
+      tagline: '#1 Etsy SEO & keyword research tool',
+      badgeText: 'Etsy Optimization',
+      description: 'Track shop rankings, audit tags, and discover trending product categories.',
+      ctaText: 'Try eRank Free',
+      category: 'keywords',
+    },
     shopify: {
       id: 'shopify',
       name: 'Shopify',
@@ -56,6 +69,26 @@ export function getAffiliatePartners(): Record<string, AffiliatePartner> {
       description: 'Avoid marketplace transaction fees by building your own ecommerce website.',
       ctaText: 'Start Shopify Trial',
       category: 'store',
+    },
+    junglescout: {
+      id: 'junglescout',
+      name: 'Jungle Scout',
+      url: jungleScoutUrl,
+      tagline: '#1 Amazon FBA product research & keyword suite',
+      badgeText: 'Amazon FBA Power Tool',
+      description: 'Find profitable Amazon products, estimate sales velocity, and supplier costs.',
+      ctaText: 'Explore Jungle Scout',
+      category: 'amazon',
+    },
+    helium10: {
+      id: 'helium10',
+      name: 'Helium 10',
+      url: helium10Url,
+      tagline: 'All-in-one software toolsuite for Amazon sellers',
+      badgeText: 'Amazon Suite',
+      description: 'Optimize product listings, audit Amazon PPC ad campaigns, and track keyword rank.',
+      ctaText: 'Try Helium 10 Free',
+      category: 'amazon',
     },
     pirateship: {
       id: 'pirateship',

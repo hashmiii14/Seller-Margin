@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { SharedCalculationResult, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { AlertTriangle, Calculator, Target, Lightbulb, Printer, Code } from 'lucide-react';
+import { AlertTriangle, Calculator, Target, Lightbulb, Printer, Code, Download } from 'lucide-react';
 import { SmartAffiliateCard } from '@/components/monetization/SmartAffiliateCard';
 import { EmbedWidgetModal } from '@/components/calculators/EmbedWidgetModal';
+import { LeadCaptureModal } from '@/components/monetization/LeadCaptureModal';
 
 export interface ResultCardProps {
   result: SharedCalculationResult;
@@ -24,6 +25,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   calculatorType = 'etsy',
 }) => {
   const [embedModalOpen, setEmbedModalOpen] = useState<boolean>(false);
+  const [leadModalOpen, setLeadModalOpen] = useState<boolean>(false);
   const isLoss = result.netProfit < 0;
 
   if (!hasInputValues || result.grossRevenue === 0) {
@@ -101,13 +103,19 @@ export const ResultCard: React.FC<ResultCardProps> = ({
           </p>
         )}
 
-        {/* Action Toolbar: Print & Embed */}
-        <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between gap-2 text-xs">
+        {/* Action Toolbar: Print, Lead Download, Embed */}
+        <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between gap-2 text-xs flex-wrap">
           <button
             onClick={handlePrint}
             className="py-1.5 px-3 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition-colors"
           >
-            <Printer className="w-3.5 h-3.5 text-slate-500" /> Print / Export PDF
+            <Printer className="w-3.5 h-3.5 text-slate-500" /> Export PDF
+          </button>
+          <button
+            onClick={() => setLeadModalOpen(true)}
+            className="py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
+          >
+            <Download className="w-3.5 h-3.5" /> Free 2026 Cheat Sheet
           </button>
           <button
             onClick={() => setEmbedModalOpen(true)}
@@ -195,6 +203,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({
       </div>
 
       <EmbedWidgetModal isOpen={embedModalOpen} onClose={() => setEmbedModalOpen(false)} />
+      <LeadCaptureModal isOpen={leadModalOpen} onClose={() => setLeadModalOpen(false)} />
     </div>
   );
 };

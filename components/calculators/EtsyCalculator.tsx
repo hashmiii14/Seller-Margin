@@ -2,18 +2,20 @@
 
 import React, { useState, useTransition } from 'react';
 import { EtsyInputs, CurrencyCode } from '@/lib/calculators/types';
-import { calculateEtsyProfit } from '@/lib/calculators/etsy';
-import { generatePriceSensitivityCurve } from '@/lib/calculators/core';
+import { calculateEtsyProfit, generatePriceSensitivityCurve } from '@/lib/calculators/etsy';
 import { CURRENCIES } from '@/lib/config/currencies';
-import { ETSY_FEE_ASSUMPTIONS, ETSY_COUNTRY_FEES } from '@/lib/config/fees/etsy';
-import { CurrencyInput, PercentageInput } from '@/components/ui/Input';
-import { Select, Toggle } from '@/components/ui/Select';
+import { ETSY_COUNTRY_FEES } from '@/lib/config/fees/etsy';
+import { CurrencyInput, NumberInput } from '@/components/ui/Input';
+import { Select } from '@/components/ui/Select';
+import { Toggle } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { ResultCard } from '@/components/calculators/ResultCard';
 import { CostBreakdownChart } from '@/components/calculators/CostBreakdownChart';
 import { PriceSensitivitySlider } from '@/components/calculators/PriceSensitivitySlider';
 import { FeeAssumptionsDrawer } from '@/components/calculators/FeeAssumptionsDrawer';
 import { ShareButton } from '@/components/calculators/ShareButton';
+import { PresetsBar } from '@/components/calculators/PresetsBar';
+import { FeeChart } from '@/components/calculators/FeeChart';
 import { encodeCalculatorState } from '@/lib/calculators/url-state';
 import { RotateCcw, SlidersHorizontal, Globe, ExternalLink } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
@@ -84,17 +86,27 @@ export const EtsyCalculator: React.FC<{
     trackEvent('calculator_reset', { calculatorType: 'etsy' });
   };
 
+  const handleSelectPreset = (preset: { price: number; cost: number; shipping: number }) => {
+    setInputs((prev) => ({
+      ...prev,
+      sellingPrice: preset.price,
+      productCost: preset.cost,
+      shippingCost: preset.shipping,
+      shippingCharged: preset.shipping,
+    }));
+  };
+
   const hasInputValues = inputs.sellingPrice > 0;
   const result = calculateEtsyProfit(inputs);
 
   const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice || 25, (testPrice) => {
     const res = calculateEtsyProfit({ ...inputs, sellingPrice: testPrice });
     return {
-      grossRevenue: res.grossRevenue,
+      price: testPrice,
+      revenue: res.grossRevenue,
       netProfit: res.netProfit,
-      profitMargin: res.profitMargin,
+      margin: res.profitMargin,
       totalFees: res.totalFees,
-      totalCosts: res.totalCosts,
     };
   });
 
@@ -108,23 +120,20 @@ export const EtsyCalculator: React.FC<{
   ];
 
   const getShareUrl = () => {
-    if (typeof window === 'undefined') return '';
-    const query = encodeCalculatorState({
-      price: inputs.sellingPrice,
-      cost: inputs.productCost,
-      shipping: inputs.shippingCost,
-      currency: inputs.currency,
-    });
-    return `${window.location.origin}${window.location.pathname}?${query}`;
+    const query = encodeCalculatorState(inputs);
+    if (typeof window !== 'undefined') {
+      return `${window.location.origin}${window.location.pathname}?${query}`;
+    }
+    return '';
   };
 
   return (
-    <div className="w-full space-y-8">
-      {/* Top Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+    <div className="w-full space-y-6">
+      {/* Top Header Controls Bar */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-orange-100 dark:bg-orange-950 flex items-center justify-center font-bold text-orange-600 dark:text-orange-400 text-lg">
-            E
+          <div className="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold text-lg">
+            SR
           </div>
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Etsy Profit Calculator</h2>
@@ -164,6 +173,9 @@ export const EtsyCalculator: React.FC<{
         </div>
       </div>
 
+      {/* 1-Click Presets Bar */}
+      <PresetsBar onSelectPreset={handleSelectPreset} />
+
       {/* Main 2-Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: Input Form Controls */}
@@ -179,180 +191,178 @@ export const EtsyCalculator: React.FC<{
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
-              label="Selling Price (per item)"
-              placeholder="e.g. 29.99"
+              label="Retail Selling Price"
               value={inputs.sellingPrice}
-              onChange={(val) => handleInput('sellingPrice', val)}
+              onChange={(v) => handleInput('sellingPrice', v)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
+              placeholder="e.g. 29.99"
+              tooltip="The retail price displayed on your Etsy listing (excluding shipping)."
             />
-            <CurrencyInput
-              label="Product Material Cost"
-              placeholder="e.g. 7.50"
-              value={inputs.productCost}
-              onChange={(val) => handleInput('productCost', val)}
-              currencySymbol={CURRENCIES[inputs.currency].symbol}
+
+            <NumberInput
+              label="Quantity Sold"
+              value={inputs.quantity}
+              onChange={(v) => handleInput('quantity', v)}
+              min={1}
+              step={1}
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Shipping Charged to Buyer"
-              placeholder="e.g. 4.50"
               value={inputs.shippingCharged}
-              onChange={(val) => handleInput('shippingCharged', val)}
+              onChange={(v) => handleInput('shippingCharged', v)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
-            />
-            <CurrencyInput
-              label="Shipping Paid by Seller"
               placeholder="e.g. 4.50"
-              value={inputs.shippingCost}
-              onChange={(val) => handleInput('shippingCost', val)}
+              tooltip="Shipping fee collected from the buyer (Etsy applies 6.5% transaction fee to this amount)."
+            />
+
+            <CurrencyInput
+              label="Product Cost of Goods (COGS)"
+              value={inputs.productCost}
+              onChange={(v) => handleInput('productCost', v)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
+              placeholder="e.g. 7.50"
+              tooltip="Your raw materials, wholesale cost, or print-on-demand supplier cost per unit."
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
-              label="Packaging & Mailer Cost"
-              placeholder="e.g. 1.00"
-              value={inputs.packagingCost}
-              onChange={(val) => handleInput('packagingCost', val)}
+              label="Shipping Cost (Paid by You)"
+              value={inputs.shippingCost}
+              onChange={(v) => handleInput('shippingCost', v)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
+              placeholder="e.g. 4.50"
+              tooltip="Actual postage cost you pay to USPS, UPS, Royal Mail, or Canada Post."
             />
+
             <CurrencyInput
-              label="Etsy Ads / Marketing Spend"
-              placeholder="e.g. 2.00"
-              value={inputs.advertisingCost}
-              onChange={(val) => handleInput('advertisingCost', val)}
+              label="Packaging & Labels"
+              value={inputs.packagingCost}
+              onChange={(v) => handleInput('packagingCost', v)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
+              placeholder="e.g. 0.50"
             />
           </div>
 
-          {/* Advanced Options Toggle */}
-          <div className="pt-2">
+          {/* Advanced Fee Overrides Toggle */}
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
             <button
               type="button"
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1.5 focus:outline-none"
+              className="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1.5"
             >
               <SlidersHorizontal className="w-3.5 h-3.5" />
-              {showAdvanced ? 'Hide Advanced Etsy Fee Settings' : 'Configure Advanced Etsy Fees & Offsite Ads'}
+              {showAdvanced ? 'Hide Advanced Fees & Ads' : 'Show Advanced Fee Rates & Offsite Ads'}
             </button>
-          </div>
 
-          {showAdvanced && (
-            <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 space-y-4 text-xs">
-              <h4 className="font-bold text-slate-800 dark:text-slate-200">Advanced Etsy Platform Fee Rules</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <CurrencyInput
-                  label="Listing Fee"
-                  value={inputs.listingFee}
-                  onChange={(val) => handleInput('listingFee', val)}
-                  currencySymbol={CURRENCIES[inputs.currency].symbol}
-                />
-                <PercentageInput
-                  label="Etsy Transaction Fee %"
-                  value={inputs.transactionFeeRate}
-                  onChange={(val) => handleInput('transactionFeeRate', val)}
-                />
-              </div>
+            {showAdvanced && (
+              <div className="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-4 animate-in fade-in">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <CurrencyInput
+                    label="Listing Fee Override"
+                    value={inputs.listingFee}
+                    onChange={(v) => handleInput('listingFee', v)}
+                    currencySymbol={CURRENCIES[inputs.currency].symbol}
+                    step={0.01}
+                  />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <PercentageInput
-                  label="Payment Processing %"
-                  value={inputs.paymentProcessingRate}
-                  onChange={(val) => handleInput('paymentProcessingRate', val)}
-                />
-                <CurrencyInput
-                  label="Payment Fixed Fee"
-                  value={inputs.paymentProcessingFixed}
-                  onChange={(val) => handleInput('paymentProcessingFixed', val)}
-                  currencySymbol={CURRENCIES[inputs.currency].symbol}
-                />
-              </div>
-
-              <Toggle
-                label="Etsy Offsite Ads Enabled"
-                description="Etsy advertises your items on Google, Facebook & Pinterest."
-                checked={inputs.offsiteAdsEnabled}
-                onChange={(val) => handleInput('offsiteAdsEnabled', val)}
-              />
-
-              {inputs.offsiteAdsEnabled && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                  <Select
-                    label="Offsite Ads Fee Tier"
-                    options={[
-                      { label: '15% (< $10k annual sales)', value: '15' },
-                      { label: '12% (≥ $10k annual sales)', value: '12' },
-                    ]}
-                    value={String(inputs.offsiteAdsRate)}
-                    onChange={(e) => handleInput('offsiteAdsRate', parseFloat(e.target.value))}
+                  <NumberInput
+                    label="Transaction Fee Rate (%)"
+                    value={inputs.transactionFeeRate}
+                    onChange={(v) => handleInput('transactionFeeRate', v)}
+                    min={0}
+                    max={100}
+                    step={0.1}
                   />
                 </div>
-              )}
-            </div>
-          )}
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <NumberInput
+                    label="Payment Processing Rate (%)"
+                    value={inputs.paymentProcessingRate}
+                    onChange={(v) => handleInput('paymentProcessingRate', v)}
+                    min={0}
+                    max={100}
+                    step={0.1}
+                  />
+
+                  <CurrencyInput
+                    label="Payment Processing Fixed"
+                    value={inputs.paymentProcessingFixed}
+                    onChange={(v) => handleInput('paymentProcessingFixed', v)}
+                    currencySymbol={CURRENCIES[inputs.currency].symbol}
+                    step={0.01}
+                  />
+                </div>
+
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                  <Toggle
+                    label="Etsy Offsite Ads Fee Enabled"
+                    description="Charged if buyer purchased via Google/FB ad click (15% for under $10k/yr, 12% for over $10k/yr)"
+                    checked={inputs.offsiteAdsEnabled}
+                    onChange={(v) => handleInput('offsiteAdsEnabled', v)}
+                  />
+
+                  {inputs.offsiteAdsEnabled && (
+                    <Select
+                      label="Offsite Ads Fee Tier"
+                      value={String(inputs.offsiteAdsRate)}
+                      onChange={(e) => handleInput('offsiteAdsRate', Number(e.target.value))}
+                      options={[
+                        { label: '15% Fee (Under $10,000 Annual Sales)', value: '15' },
+                        { label: '12% Fee (Over $10,000 Annual Sales)', value: '12' },
+                      ]}
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-2 flex items-center justify-between text-[11px] text-slate-500 border-t border-slate-100 dark:border-slate-800">
+            <span>Official Etsy House Rules Review: <strong className="text-slate-700 dark:text-slate-300">August 2026</strong></span>
+            <a
+              href={countryConfig.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand-600 dark:text-brand-400 font-semibold hover:underline flex items-center gap-1"
+            >
+              Verify Source <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
         </div>
 
-        {/* Right Column: Live Results Dashboard */}
+        {/* Right Column: Dynamic Results & Breakdown */}
         <div className="lg:col-span-6 space-y-6">
-          <ResultCard
-            result={result}
-            currency={inputs.currency}
-            feeLabel="Total Etsy Fees"
-            hasInputValues={hasInputValues}
-          />
+          <ResultCard result={result} currency={inputs.currency} hasInputValues={hasInputValues} calculatorType="etsy" />
 
           {hasInputValues && (
-            <CostBreakdownChart
-              grossRevenue={result.grossRevenue}
-              items={breakdownItems}
-              currency={inputs.currency}
-            />
+            <>
+              <FeeChart
+                grossRevenue={result.grossRevenue}
+                totalFees={result.totalFees}
+                totalCosts={result.totalCosts}
+                netProfit={result.netProfit}
+                currency={inputs.currency}
+              />
+
+              <CostBreakdownChart items={breakdownItems} currency={inputs.currency} grossRevenue={result.grossRevenue} />
+
+              <PriceSensitivitySlider
+                points={sensitivityPoints}
+                currentPrice={inputs.sellingPrice}
+                currency={inputs.currency}
+                onSelectPrice={(p) => handleInput('sellingPrice', p)}
+              />
+            </>
           )}
+
+          <FeeAssumptionsDrawer />
         </div>
       </div>
-
-      {hasInputValues && (
-        <PriceSensitivitySlider
-          currentPrice={inputs.sellingPrice}
-          points={sensitivityPoints}
-          currency={inputs.currency}
-          onSelectPrice={(newPrice) => handleInput('sellingPrice', newPrice)}
-        />
-      )}
-
-      {/* Fee Sources & Methodology Section */}
-      <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-3 text-xs">
-        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2">
-          <h4 className="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider">
-            Fee Sources & Methodology ({countryConfig.countryName})
-          </h4>
-          <span className="text-[11px] text-slate-500">Verified: {countryConfig.lastVerified}</span>
-        </div>
-        <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-          Etsy fee assumptions are configured specifically for <strong>{countryConfig.countryName}</strong> sellers: Listing Fee ($0.20 USD), Transaction Fee (6.5%), and Etsy Payments Processing ({countryConfig.paymentProcessingRate}% + {countryConfig.symbol}{countryConfig.paymentProcessingFixed}).
-        </p>
-        <div className="pt-1">
-          <a
-            href={countryConfig.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 font-bold text-brand-600 dark:text-brand-400 hover:underline"
-          >
-            Official Etsy Fees & Payments Policy <ExternalLink className="w-3 h-3" />
-          </a>
-        </div>
-      </div>
-
-      {/* Fee Assumptions Drawer */}
-      <FeeAssumptionsDrawer
-        platformName="Etsy"
-        lastReviewed={ETSY_FEE_ASSUMPTIONS.lastReviewed}
-        officialSource={ETSY_FEE_ASSUMPTIONS.officialSource}
-        rules={ETSY_FEE_ASSUMPTIONS.rules}
-      />
     </div>
   );
 };

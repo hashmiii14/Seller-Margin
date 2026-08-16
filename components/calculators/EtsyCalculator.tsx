@@ -4,9 +4,9 @@ import React, { useState, useTransition } from 'react';
 import { EtsyInputs, CurrencyCode } from '@/lib/calculators/types';
 import { calculateEtsyProfit } from '@/lib/calculators/etsy';
 import { generatePriceSensitivityCurve } from '@/lib/calculators/core';
-import { CURRENCIES, formatCurrency } from '@/lib/config/currencies';
+import { CURRENCIES } from '@/lib/config/currencies';
 import { ETSY_FEE_ASSUMPTIONS } from '@/lib/config/fees/etsy';
-import { CurrencyInput, PercentageInput, Input } from '@/components/ui/Input';
+import { CurrencyInput, PercentageInput } from '@/components/ui/Input';
 import { Select, Toggle } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
 import { ResultCard } from '@/components/calculators/ResultCard';
@@ -18,15 +18,15 @@ import { encodeCalculatorState } from '@/lib/calculators/url-state';
 import { RotateCcw, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
-const DEFAULT_INPUTS: EtsyInputs = {
-  sellingPrice: 29.99,
+const EMPTY_INPUTS: EtsyInputs = {
+  sellingPrice: 0,
   quantity: 1,
-  shippingCharged: 4.50,
-  productCost: 7.25,
-  packagingCost: 1.00,
-  shippingCost: 4.50,
-  advertisingCost: 2.00,
-  otherCosts: 0.50,
+  shippingCharged: 0,
+  productCost: 0,
+  packagingCost: 0,
+  shippingCost: 0,
+  advertisingCost: 0,
+  otherCosts: 0,
   listingFee: 0.20,
   transactionFeeRate: 6.5,
   paymentProcessingRate: 3.0,
@@ -38,7 +38,7 @@ const DEFAULT_INPUTS: EtsyInputs = {
 
 export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> = ({ initialParams }) => {
   const [inputs, setInputs] = useState<EtsyInputs>({
-    ...DEFAULT_INPUTS,
+    ...EMPTY_INPUTS,
     ...initialParams,
   });
 
@@ -52,13 +52,14 @@ export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> =
   };
 
   const handleReset = () => {
-    setInputs(DEFAULT_INPUTS);
+    setInputs(EMPTY_INPUTS);
     trackEvent('calculator_reset', { calculatorType: 'etsy' });
   };
 
+  const hasInputValues = inputs.sellingPrice > 0;
   const result = calculateEtsyProfit(inputs);
 
-  const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice, (testPrice) => {
+  const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice || 25, (testPrice) => {
     const res = calculateEtsyProfit({ ...inputs, sellingPrice: testPrice });
     return {
       grossRevenue: res.grossRevenue,
@@ -130,12 +131,14 @@ export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> =
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Selling Price (per item)"
+              placeholder="e.g. 29.99"
               value={inputs.sellingPrice}
               onChange={(val) => handleInput('sellingPrice', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Product Material Cost"
+              placeholder="e.g. 7.50"
               value={inputs.productCost}
               onChange={(val) => handleInput('productCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -145,12 +148,14 @@ export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> =
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Shipping Charged to Buyer"
+              placeholder="e.g. 4.50"
               value={inputs.shippingCharged}
               onChange={(val) => handleInput('shippingCharged', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Shipping Paid by Seller"
+              placeholder="e.g. 4.50"
               value={inputs.shippingCost}
               onChange={(val) => handleInput('shippingCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -160,12 +165,14 @@ export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> =
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Packaging & Mailer Cost"
+              placeholder="e.g. 1.00"
               value={inputs.packagingCost}
               onChange={(val) => handleInput('packagingCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Etsy Ads / Marketing Spend"
+              placeholder="e.g. 2.00"
               value={inputs.advertisingCost}
               onChange={(val) => handleInput('advertisingCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -241,23 +248,31 @@ export const EtsyCalculator: React.FC<{ initialParams?: Partial<EtsyInputs> }> =
 
         {/* Right Column: Live Results Dashboard */}
         <div className="lg:col-span-6 space-y-6">
-          <ResultCard result={result} currency={inputs.currency} feeLabel="Total Etsy Fees" />
-
-          <CostBreakdownChart
-            grossRevenue={result.grossRevenue}
-            items={breakdownItems}
+          <ResultCard
+            result={result}
             currency={inputs.currency}
+            feeLabel="Total Etsy Fees"
+            hasInputValues={hasInputValues}
           />
+
+          {hasInputValues && (
+            <CostBreakdownChart
+              grossRevenue={result.grossRevenue}
+              items={breakdownItems}
+              currency={inputs.currency}
+            />
+          )}
         </div>
       </div>
 
-      {/* Price Sensitivity Section */}
-      <PriceSensitivitySlider
-        currentPrice={inputs.sellingPrice}
-        points={sensitivityPoints}
-        currency={inputs.currency}
-        onSelectPrice={(newPrice) => handleInput('sellingPrice', newPrice)}
-      />
+      {hasInputValues && (
+        <PriceSensitivitySlider
+          currentPrice={inputs.sellingPrice}
+          points={sensitivityPoints}
+          currency={inputs.currency}
+          onSelectPrice={(newPrice) => handleInput('sellingPrice', newPrice)}
+        />
+      )}
 
       {/* Fee Assumptions Drawer */}
       <FeeAssumptionsDrawer

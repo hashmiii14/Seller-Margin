@@ -18,14 +18,14 @@ import { encodeCalculatorState } from '@/lib/calculators/url-state';
 import { RotateCcw, SlidersHorizontal } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
-const DEFAULT_AMAZON_INPUTS: AmazonFbaInputs = {
-  sellingPrice: 34.99,
-  productCost: 8.50,
+const EMPTY_AMAZON_INPUTS: AmazonFbaInputs = {
+  sellingPrice: 0,
+  productCost: 0,
   shippingCharged: 0,
-  shippingCost: 0, // FBA handles buyer shipping
-  inboundShipping: 1.25,
-  advertisingCost: 3.50,
-  otherCosts: 0.50,
+  shippingCost: 0,
+  inboundShipping: 0,
+  advertisingCost: 0,
+  otherCosts: 0,
   referralFeeRate: 15,
   fbaFulfillmentFee: 4.75,
   monthlyStorageFee: 0.45,
@@ -36,7 +36,7 @@ const DEFAULT_AMAZON_INPUTS: AmazonFbaInputs = {
 
 export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaInputs> }> = ({ initialParams }) => {
   const [inputs, setInputs] = useState<AmazonFbaInputs>({
-    ...DEFAULT_AMAZON_INPUTS,
+    ...EMPTY_AMAZON_INPUTS,
     ...initialParams,
   });
 
@@ -50,13 +50,14 @@ export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaIn
   };
 
   const handleReset = () => {
-    setInputs(DEFAULT_AMAZON_INPUTS);
+    setInputs(EMPTY_AMAZON_INPUTS);
     trackEvent('calculator_reset', { calculatorType: 'amazon' });
   };
 
+  const hasInputValues = inputs.sellingPrice > 0;
   const result = calculateAmazonFbaProfit(inputs);
 
-  const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice, (testPrice) => {
+  const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice || 35, (testPrice) => {
     const res = calculateAmazonFbaProfit({ ...inputs, sellingPrice: testPrice });
     return {
       grossRevenue: res.grossRevenue,
@@ -127,12 +128,14 @@ export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaIn
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Selling Price"
+              placeholder="e.g. 34.99"
               value={inputs.sellingPrice}
               onChange={(val) => handleInput('sellingPrice', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Unit Product Cost (Landed)"
+              placeholder="e.g. 8.50"
               value={inputs.productCost}
               onChange={(val) => handleInput('productCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -142,12 +145,14 @@ export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaIn
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="FBA Fulfillment Fee per Unit"
+              placeholder="e.g. 4.75"
               value={inputs.fbaFulfillmentFee}
               onChange={(val) => handleInput('fbaFulfillmentFee', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Inbound Shipping to FBA"
+              placeholder="e.g. 1.25"
               value={inputs.inboundShipping}
               onChange={(val) => handleInput('inboundShipping', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -157,12 +162,14 @@ export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaIn
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <CurrencyInput
               label="Amazon PPC Ad Spend / Unit"
+              placeholder="e.g. 3.50"
               value={inputs.advertisingCost}
               onChange={(val) => handleInput('advertisingCost', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
             />
             <CurrencyInput
               label="Monthly Storage Fee / Unit"
+              placeholder="e.g. 0.45"
               value={inputs.monthlyStorageFee}
               onChange={(val) => handleInput('monthlyStorageFee', val)}
               currencySymbol={CURRENCIES[inputs.currency].symbol}
@@ -200,22 +207,31 @@ export const AmazonFbaCalculator: React.FC<{ initialParams?: Partial<AmazonFbaIn
         </div>
 
         <div className="lg:col-span-6 space-y-6">
-          <ResultCard result={result} currency={inputs.currency} feeLabel="Total Amazon Fees" />
-
-          <CostBreakdownChart
-            grossRevenue={result.grossRevenue}
-            items={breakdownItems}
+          <ResultCard
+            result={result}
             currency={inputs.currency}
+            feeLabel="Total Amazon Fees"
+            hasInputValues={hasInputValues}
           />
+
+          {hasInputValues && (
+            <CostBreakdownChart
+              grossRevenue={result.grossRevenue}
+              items={breakdownItems}
+              currency={inputs.currency}
+            />
+          )}
         </div>
       </div>
 
-      <PriceSensitivitySlider
-        currentPrice={inputs.sellingPrice}
-        points={sensitivityPoints}
-        currency={inputs.currency}
-        onSelectPrice={(newPrice) => handleInput('sellingPrice', newPrice)}
-      />
+      {hasInputValues && (
+        <PriceSensitivitySlider
+          currentPrice={inputs.sellingPrice}
+          points={sensitivityPoints}
+          currency={inputs.currency}
+          onSelectPrice={(newPrice) => handleInput('sellingPrice', newPrice)}
+        />
+      )}
 
       <FeeAssumptionsDrawer
         platformName="Amazon FBA"

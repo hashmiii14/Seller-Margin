@@ -1,21 +1,42 @@
+'use client';
+
 import React from 'react';
 import { SharedCalculationResult, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { AlertTriangle, CheckCircle, TrendingUp, HelpCircle } from 'lucide-react';
+import { AlertTriangle, Calculator, Sparkles } from 'lucide-react';
 
 export interface ResultCardProps {
   result: SharedCalculationResult;
   currency: CurrencyCode;
   feeLabel?: string;
+  hasInputValues?: boolean;
 }
 
 export const ResultCard: React.FC<ResultCardProps> = ({
   result,
   currency,
   feeLabel = 'Total Platform Fees',
+  hasInputValues = true,
 }) => {
   const isLoss = result.netProfit < 0;
+
+  // Empty state when user hasn't entered selling price yet
+  if (!hasInputValues || result.grossRevenue === 0) {
+    return (
+      <div className="w-full rounded-xl border border-dashed border-slate-300 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/50 p-6 sm:p-8 text-center space-y-3">
+        <div className="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center mx-auto">
+          <Calculator className="w-6 h-6" />
+        </div>
+        <h4 className="text-base font-bold text-slate-800 dark:text-slate-200">
+          Enter Your Product Numbers Above
+        </h4>
+        <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
+          Fill in your retail selling price, product cost, and shipping fees to calculate your take-home net profit and break-even price instantly.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full space-y-4">

@@ -1,0 +1,3 @@
+# SellerMargin AdSense Configuration
+# Replace google.com, pub-0000000000000000 with actual AdSense publisher ID when approved
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

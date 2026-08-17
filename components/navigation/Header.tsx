@@ -109,17 +109,17 @@ export const Header: React.FC = () => {
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Single Unified Theme Toggle Button */}
+          {/* Single Unified Theme Toggle Button: Moon = Dark Mode, Sun = Light Mode */}
           <button
             type="button"
             onClick={toggleTheme}
             className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-colors"
-            title={`Switch to ${theme === 'dark' ? 'Morning Light' : 'Night Dark'} Mode`}
+            title={`Active: ${theme === 'dark' ? 'Night Dark Mode (Moon)' : 'Morning Light Mode (Sun)'}. Click to switch.`}
           >
             {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-amber-400" />
+              <Moon className="w-4 h-4 text-brand-400" />
             ) : (
-              <Moon className="w-4 h-4 text-indigo-600" />
+              <Sun className="w-4 h-4 text-amber-500" />
             )}
           </button>
 

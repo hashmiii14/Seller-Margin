@@ -372,6 +372,59 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* 10x COMPETITIVE SUPERIORITY MATRIX */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-8 shadow-sm">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+                Why Sellrivo is <span className="gradient-text-brand">10x Better</span> Than Other Fee Calculators
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                Old calculator tools rely on outdated 2022 fee rates, ad-stuffed popups, and simple single-unit math. See how Sellrivo revolutionizes seller profit calculations.
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs text-left border-collapse border border-slate-200 dark:border-slate-800">
+                <thead>
+                  <tr className="bg-slate-100 dark:bg-slate-850 text-slate-900 dark:text-slate-100">
+                    <th className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">Feature / Capability</th>
+                    <th className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold text-brand-600 dark:text-brand-400">Sellrivo Suite</th>
+                    <th className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold text-slate-500">Old Generic Calculators</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-850/50">
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">2026 Verified Global Fee Schedules</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">✅ Real-Time Rates (US, UK, EU, CA, AU, IN)</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-slate-400">❌ Outdated 2022 Flat Fees</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-850/50">
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">Interactive Price Sensitivity Curve</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">✅ Live Multi-Price Simulation Slider</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-slate-400">❌ Manual One-by-One Re-typing</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-850/50">
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">Niche Product Quick Preset Templates</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">✅ 1-Click Load (Handmade, POD, Digital, Wholesale)</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-slate-400">❌ Blank Forms Only</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-850/50">
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">Printable PDF & Clipboard Report Cards</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">✅ Free 1-Click PDF & Report Card Export</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-slate-400">❌ No Export Options</td>
+                  </tr>
+                  <tr className="hover:bg-slate-50 dark:hover:bg-slate-850/50">
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 font-bold">Loss Warning & Break-Even Floor Meter</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-emerald-600 dark:text-emerald-400 font-bold">✅ Automatic Safety Alerts & Min Price Floor</td>
+                    <td className="p-3.5 border border-slate-200 dark:border-slate-800 text-slate-400">❌ Silent Negative Numbers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         {/* COMPARISON TOOLS */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">

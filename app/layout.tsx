@@ -74,7 +74,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-brand-500 selection:text-white">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 site-grid-lines">{children}</main>
         <Footer />
         <CookieConsent />
       </body>

@@ -122,21 +122,24 @@ export default function HomePage() {
         {/* CALCULATOR SUITE GRID */}
         <section id="suite" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
-              Complete Ecommerce Profit Calculator Suite
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
+              <Layers className="w-3.5 h-3.5" /> Specialized Tool Suite
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+              Stop Guessing Your Take-Home Pay. Built for Real Sellers.
             </h2>
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-              Select a specialized calculator tailored for your marketplace or pricing strategy.
+              Select a specialized fee calculator engineered for your exact marketplace, country rates, and pricing strategy.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/etsy-profit-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-950 text-orange-600 dark:text-orange-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-950 text-orange-600 dark:text-orange-400 flex items-center justify-center font-black text-xl">
                   E
                 </div>
                 <span className="text-xs font-bold text-orange-600 dark:text-orange-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -155,10 +158,10 @@ export default function HomePage() {
 
             <Link
               href="/amazon-fba-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 flex items-center justify-center font-black text-xl">
                   a
                 </div>
                 <span className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -177,10 +180,10 @@ export default function HomePage() {
 
             <Link
               href="/pod-profit-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black text-xl">
                   P
                 </div>
                 <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -199,10 +202,10 @@ export default function HomePage() {
 
             <Link
               href="/profit-margin-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-xl">
                   %
                 </div>
                 <span className="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -221,10 +224,10 @@ export default function HomePage() {
 
             <Link
               href="/break-even-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-purple-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center font-black text-xl">
                   B
                 </div>
                 <span className="text-xs font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -243,10 +246,10 @@ export default function HomePage() {
 
             <Link
               href="/etsy-pricing-calculator"
-              className="group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 hover:shadow-lg transition-all space-y-4"
+              className="interactive-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-500/50 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400 flex items-center justify-center font-black text-xl">
                   $
                 </div>
                 <span className="text-xs font-bold text-brand-600 dark:text-brand-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -265,11 +268,82 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ALPHABETICAL & MARKETPLACE QUICK DIRECTORY GRID */}
+        <section id="directory" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm bg-subtle-grid space-y-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-wider block">
+                  Quick Alphabetical Index
+                </span>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-slate-100">
+                  Marketplace & Tool Directory (A–Z)
+                </h3>
+              </div>
+              <span className="text-xs font-mono text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">
+                10+ Specialized Tools Live
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-xs">
+              <Link href="/amazon-fba-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-amber-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">A</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Amazon FBA</span>
+              </Link>
+
+              <Link href="/break-even-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-purple-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">B</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Break-Even</span>
+              </Link>
+
+              <Link href="/etsy-fee-calculator-canada" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-red-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">C</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Canada Etsy</span>
+              </Link>
+
+              <Link href="/etsy-digital-downloads-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-blue-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">D</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Digital Downloads</span>
+              </Link>
+
+              <Link href="/etsy-profit-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-orange-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">E</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Etsy Calculator</span>
+              </Link>
+
+              <Link href="/gelato-profit-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-emerald-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">G</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Gelato POD</span>
+              </Link>
+
+              <Link href="/etsy-fee-calculator-india" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-indigo-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">I</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">India Etsy</span>
+              </Link>
+
+              <Link href="/profit-margin-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-cyan-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">M</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Margin & Markup</span>
+              </Link>
+
+              <Link href="/printify-profit-calculator" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-lime-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">P</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">Printify POD</span>
+              </Link>
+
+              <Link href="/etsy-fee-calculator-uk" className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-brand-500 transition-colors flex items-center gap-2.5 group">
+                <span className="w-6 h-6 rounded-md bg-rose-500 text-white font-mono font-bold text-xs flex items-center justify-center shrink-0">U</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-brand-600 truncate">UK Etsy</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* HOW IT WORKS */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">How Sellrivo Works</h2>
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight">4 Steps to Zero Fee Surprises</h2>
               <p className="text-xs sm:text-sm text-slate-400">
                 Four clear steps to protect your margins before listing inventory.
               </p>

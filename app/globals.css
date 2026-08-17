@@ -62,6 +62,17 @@ body {
   background: radial-gradient(circle at 50% 0%, rgba(12, 147, 228, 0.18) 0%, rgba(16, 185, 129, 0.08) 40%, transparent 70%);
 }
 
+/* Subtle Backdrop Grid Pattern */
+.bg-subtle-grid {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-subtle-grid {
+  background-image: radial-gradient(rgba(51, 65, 85, 0.35) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
 /* Gradient Text Utilities */
 .gradient-text-brand {
   background: linear-gradient(135deg, #097ec7 0%, #10b981 100%);

@@ -10,7 +10,7 @@ import { Calculator, Sun, Moon, Search, Menu, X, ChevronDown } from 'lucide-reac
 import { trackEvent } from '@/lib/analytics';
 
 export const Header: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,27 +19,26 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const saved = localStorage.getItem('sellrivo_theme') as 'light' | 'dark';
-    if (saved === 'dark') {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-    } else {
-      // Default strictly to clean Light theme across the entire site
+    if (saved === 'light') {
       setTheme('light');
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('sellrivo_theme', 'light');
+    } else {
+      // Default strictly to premium Dark theme across the entire site
+      setTheme('dark');
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('sellrivo_theme', 'dark');
     }
   }, []);
 
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    localStorage.setItem('sellrivo_theme', next);
-    if (next === 'dark') {
+  const setExplicitTheme = (mode: 'light' | 'dark') => {
+    setTheme(mode);
+    localStorage.setItem('sellrivo_theme', mode);
+    if (mode === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    trackEvent('theme_changed', { theme: next });
+    trackEvent('theme_changed', { theme: mode });
   };
 
   const calculatorItems = MAIN_NAV_ITEMS.filter((item) => item.category === 'calculators');
@@ -125,15 +124,33 @@ export const Header: React.FC = () => {
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Theme Toggle */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
-            title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-          >
-            {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-          </button>
+          {/* Segmented Sun (Morning/Light) & Moon (Night/Dark) Theme Toggle */}
+          <div className="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-850 border border-slate-200 dark:border-slate-800">
+            <button
+              type="button"
+              onClick={() => setExplicitTheme('light')}
+              className={`p-1.5 rounded-lg transition-all ${
+                theme === 'light'
+                  ? 'bg-white text-amber-500 shadow-sm font-bold scale-105'
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+              }`}
+              title="Morning Light Theme (Sun)"
+            >
+              <Sun className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => setExplicitTheme('dark')}
+              className={`p-1.5 rounded-lg transition-all ${
+                theme === 'dark'
+                  ? 'bg-slate-900 text-brand-400 shadow-sm font-bold scale-105'
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+              }`}
+              title="Night Dark Theme (Moon)"
+            >
+              <Moon className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* Primary CTA */}
           <Link href="/etsy-profit-calculator" className="hidden sm:inline-block">

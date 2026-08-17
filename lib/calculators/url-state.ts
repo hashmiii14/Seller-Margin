@@ -2,7 +2,7 @@
  * Safe query parameter serializer and parser for shareable calculator links.
  */
 
-export function encodeCalculatorState(params: Record<string, number | string | boolean>): string {
+export function encodeCalculatorState<T extends Record<string, any>>(params: T): string {
   const searchParams = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {

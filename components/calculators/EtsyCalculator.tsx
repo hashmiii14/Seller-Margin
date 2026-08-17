@@ -120,7 +120,7 @@ export const EtsyCalculator: React.FC<{
   ];
 
   const getShareUrl = () => {
-    const query = encodeCalculatorState(inputs);
+    const query = encodeCalculatorState(inputs as any);
     if (typeof window !== 'undefined') {
       return `${window.location.origin}${window.location.pathname}?${query}`;
     }

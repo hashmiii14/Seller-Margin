@@ -10,7 +10,7 @@ import { Calculator, Sun, Moon, Search, Menu, X, ChevronDown } from 'lucide-reac
 import { trackEvent } from '@/lib/analytics';
 
 export const Header: React.FC = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -19,14 +19,14 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const saved = localStorage.getItem('sellrivo_theme') as 'light' | 'dark';
-    if (saved === 'light') {
-      setTheme('light');
-      document.documentElement.classList.remove('dark');
-    } else {
-      // Default strictly to premium Dark theme across the entire site
+    if (saved === 'dark') {
       setTheme('dark');
       document.documentElement.classList.add('dark');
-      localStorage.setItem('sellrivo_theme', 'dark');
+    } else {
+      // Default strictly to clean Light / Morning theme across the entire site
+      setTheme('light');
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('sellrivo_theme', 'light');
     }
   }, []);
 

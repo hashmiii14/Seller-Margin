@@ -12,6 +12,7 @@ export type AnalyticsEventName =
   | 'profit_goal_copied'
   | 'embed_code_copied'
   | 'sticky_cta_click'
+  | 'lead_captured'
   | 'affiliate_click'
   | 'compare_clicked'
   | 'guide_cta_clicked'
@@ -27,6 +28,7 @@ export interface AnalyticsEventParams {
   calculatorSlug?: string;
   guideSlug?: string;
   theme?: string;
+  email?: string;
   deviceCategory?: 'mobile' | 'desktop';
 }
 

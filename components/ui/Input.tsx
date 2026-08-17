@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { clsx } from 'clsx';
+import { HelpCircle } from 'lucide-react';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -9,18 +10,26 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   error?: string;
   prefixSymbol?: string;
   suffixSymbol?: string;
+  tooltip?: string;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, helperText, error, prefixSymbol, suffixSymbol, className, id, ...props }, ref) => {
+  ({ label, helperText, error, prefixSymbol, suffixSymbol, tooltip, className, id, ...props }, ref) => {
     const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-            {label}
-          </label>
+          <div className="flex items-center justify-between mb-1">
+            <label htmlFor={inputId} className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
+              {label}
+            </label>
+            {tooltip && (
+              <span className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 cursor-help" title={tooltip}>
+                <HelpCircle className="w-3.5 h-3.5" />
+              </span>
+            )}
+          </div>
         )}
         <div className="relative flex items-center rounded-lg shadow-sm">
           {prefixSymbol && (
@@ -63,6 +72,7 @@ export interface CurrencyInputProps extends Omit<InputProps, 'value' | 'onChange
   onChange: (val: number) => void;
   currencySymbol?: string;
   placeholder?: string;
+  tooltip?: string;
 }
 
 export const CurrencyInput: React.FC<CurrencyInputProps> = ({
@@ -70,6 +80,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
   onChange,
   currencySymbol = '$',
   placeholder = 'Enter amount',
+  tooltip,
   ...props
 }) => {
   return (
@@ -79,6 +90,7 @@ export const CurrencyInput: React.FC<CurrencyInputProps> = ({
       min="0"
       prefixSymbol={currencySymbol}
       placeholder={placeholder}
+      tooltip={tooltip}
       value={value === 0 || value === '0' || value === '' ? '' : value}
       onChange={(e) => {
         const val = parseFloat(e.target.value);
@@ -93,12 +105,14 @@ export interface PercentageInputProps extends Omit<InputProps, 'value' | 'onChan
   value: number | string;
   onChange: (val: number) => void;
   placeholder?: string;
+  tooltip?: string;
 }
 
 export const PercentageInput: React.FC<PercentageInputProps> = ({
   value,
   onChange,
   placeholder = '0',
+  tooltip,
   ...props
 }) => {
   return (
@@ -109,6 +123,7 @@ export const PercentageInput: React.FC<PercentageInputProps> = ({
       max="100"
       suffixSymbol="%"
       placeholder={placeholder}
+      tooltip={tooltip}
       value={value === 0 || value === '0' || value === '' ? '' : value}
       onChange={(e) => {
         const val = parseFloat(e.target.value);
@@ -126,6 +141,7 @@ export interface NumberInputProps extends Omit<InputProps, 'value' | 'onChange' 
   max?: number;
   step?: number;
   placeholder?: string;
+  tooltip?: string;
 }
 
 export const NumberInput: React.FC<NumberInputProps> = ({
@@ -135,6 +151,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
   max,
   step = 1,
   placeholder = '0',
+  tooltip,
   ...props
 }) => {
   return (
@@ -144,6 +161,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
       min={min}
       max={max}
       placeholder={placeholder}
+      tooltip={tooltip}
       value={value === 0 || value === '0' || value === '' ? '' : value}
       onChange={(e) => {
         const val = parseFloat(e.target.value);

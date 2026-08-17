@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/navigation/Header';
 import { Footer } from '@/components/navigation/Footer';
@@ -6,6 +7,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { CookieConsent } from '@/components/ui/CookieConsent';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sellrivo.site';
+const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-2781286202640992';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -21,6 +23,9 @@ export const metadata: Metadata = {
     'Profit margin calculator',
   ],
   authors: [{ name: 'Sellrivo' }],
+  other: {
+    'google-adsense-account': adsenseClientId,
+  },
   openGraph: {
     title: 'Sellrivo — Know Your Profit Before You Sell',
     description: 'Calculate real seller fees, profit margins, and break-even prices before listing products.',
@@ -59,6 +64,12 @@ export default function RootLayout({
               'query-input': 'required name=search_term_string',
             },
           }}
+        />
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-brand-500 selection:text-white">

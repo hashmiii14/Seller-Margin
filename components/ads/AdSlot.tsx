@@ -9,6 +9,7 @@ export interface AdSlotProps {
 
 export const AdSlot: React.FC<AdSlotProps> = ({ type = 'responsive', className = '' }) => {
   const isEnabled = process.env.NEXT_PUBLIC_ENABLE_ADS === 'true';
+  const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-2781286202640992';
 
   if (!isEnabled) {
     return null;
@@ -30,11 +31,10 @@ export const AdSlot: React.FC<AdSlotProps> = ({ type = 'responsive', className =
 
   return (
     <div className={`my-6 flex justify-center items-center bg-slate-50 dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-800 rounded-xl overflow-hidden ${getSlotStyle()} ${className}`}>
-      {/* Google AdSense Script placeholder container */}
       <ins
         className="adsbygoogle"
         style={{ display: 'block' }}
-        data-ad-client={process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-XXXXXXXXXXXXXXXX'}
+        data-ad-client={clientId}
         data-ad-slot="1234567890"
         data-ad-format="auto"
         data-full-width-responsive="true"

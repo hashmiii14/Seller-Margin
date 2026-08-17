@@ -23,9 +23,10 @@ export const Header: React.FC = () => {
       setTheme('dark');
       document.documentElement.classList.add('dark');
     } else {
-      // Default to Light mode
+      // Default strictly to clean Light theme across the entire site
       setTheme('light');
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('sellrivo_theme', 'light');
     }
   }, []);
 

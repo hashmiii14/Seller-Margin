@@ -4,15 +4,16 @@ import React, { useState } from 'react';
 import { calculateEtsyProfit } from '@/lib/calculators/etsy';
 import { CurrencyInput } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { CURRENCIES, formatCurrency } from '@/lib/config/currencies';
+import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { ArrowRight, Calculator, CheckCircle2, Sparkles, RefreshCw } from 'lucide-react';
+import { ArrowRight, Calculator, Sparkles, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 export const CalculatorPreview: React.FC = () => {
-  const [sellingPrice, setSellingPrice] = useState<number>(0);
-  const [productCost, setProductCost] = useState<number>(0);
-  const [shippingCost, setShippingCost] = useState<number>(0);
+  // Pre-load realistic example values by default
+  const [sellingPrice, setSellingPrice] = useState<number>(29.99);
+  const [productCost, setProductCost] = useState<number>(7.25);
+  const [shippingCost, setShippingCost] = useState<number>(4.50);
 
   const handleLoadExample = () => {
     setSellingPrice(29.99);
@@ -55,15 +56,9 @@ export const CalculatorPreview: React.FC = () => {
           <span className="font-bold text-sm sm:text-base">Interactive Hero Calculator</span>
         </div>
         <div className="flex items-center gap-2">
-          {hasInputs ? (
-            <Badge variant="brand" className="text-xs bg-brand-500/20 text-brand-300 border-brand-500/30">
-              <Sparkles className="w-3 h-3 mr-1 inline" /> Live Result
-            </Badge>
-          ) : (
-            <Badge variant="neutral" className="text-xs bg-slate-800 text-slate-300 border-slate-700">
-              Empty State
-            </Badge>
-          )}
+          <Badge variant="brand" className="text-xs bg-brand-500/20 text-brand-300 border-brand-500/30">
+            <Sparkles className="w-3 h-3 mr-1 inline" /> Live Example Preloaded
+          </Badge>
         </div>
       </div>
 
@@ -93,7 +88,7 @@ export const CalculatorPreview: React.FC = () => {
           />
         </div>
 
-        {/* Live Output Dashboard OR Empty Prompt */}
+        {/* Live Output Dashboard */}
         {hasInputs ? (
           <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 space-y-4">
             <div className="flex items-baseline justify-between gap-4 border-b border-slate-200 dark:border-slate-700 pb-3">
@@ -143,7 +138,7 @@ export const CalculatorPreview: React.FC = () => {
               Enter your retail selling price and product cost above to see instant fee deductions and net profit.
             </p>
             <Button variant="outline" size="sm" onClick={handleLoadExample} className="gap-1.5 text-xs">
-              <Sparkles className="w-3.5 h-3.5 text-brand-600" /> Load Example Calculation ($29.99)
+              <Sparkles className="w-3.5 h-3.5 text-brand-600" /> Reload Example ($29.99)
             </Button>
           </div>
         )}

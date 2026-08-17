@@ -476,16 +476,21 @@ export default function HomePage() {
 
         {/* FINAL CTA */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="p-8 sm:p-12 rounded-3xl bg-brand-600 text-white space-y-4 shadow-xl">
-            <h2 className="text-3xl font-black">Ready to Know Your Real Selling Profit?</h2>
-            <p className="text-sm text-brand-100 max-w-md mx-auto">
+          <div className="p-8 sm:p-12 rounded-3xl bg-brand-600 text-white space-y-5 shadow-2xl border border-brand-500">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">Ready to Know Your Real Selling Profit?</h2>
+            <p className="text-sm sm:text-base text-brand-100 max-w-md mx-auto font-medium">
               Start calculating your true take-home earnings before you list your next product.
             </p>
-            <div className="pt-2">
+            <div className="pt-3">
               <Link href="/etsy-profit-calculator">
-                <Button size="lg" className="bg-white text-brand-700 hover:bg-brand-50 text-base font-bold">
-                  Open Etsy Profit Calculator
-                </Button>
+                <button
+                  type="button"
+                  className="px-7 py-4 rounded-xl bg-white text-slate-900 font-black text-base shadow-xl hover:bg-slate-100 hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-2.5"
+                >
+                  <Calculator className="w-5 h-5 text-brand-600" />
+                  <span>Open Etsy Profit Calculator</span>
+                  <ArrowRight className="w-4 h-4 text-brand-600" />
+                </button>
               </Link>
             </div>
           </div>

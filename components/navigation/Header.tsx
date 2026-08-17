@@ -30,15 +30,16 @@ export const Header: React.FC = () => {
     }
   }, []);
 
-  const setExplicitTheme = (mode: 'light' | 'dark') => {
-    setTheme(mode);
-    localStorage.setItem('sellrivo_theme', mode);
-    if (mode === 'dark') {
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    localStorage.setItem('sellrivo_theme', next);
+    if (next === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-    trackEvent('theme_changed', { theme: mode });
+    trackEvent('theme_changed', { theme: next });
   };
 
   const calculatorItems = MAIN_NAV_ITEMS.filter((item) => item.category === 'calculators');
@@ -124,33 +125,19 @@ export const Header: React.FC = () => {
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Segmented Sun (Morning/Light) & Moon (Night/Dark) Theme Toggle */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-slate-850 border border-slate-200 dark:border-slate-800">
-            <button
-              type="button"
-              onClick={() => setExplicitTheme('light')}
-              className={`p-1.5 rounded-lg transition-all ${
-                theme === 'light'
-                  ? 'bg-white text-amber-500 shadow-sm font-bold scale-105'
-                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-              }`}
-              title="Morning Light Theme (Sun)"
-            >
-              <Sun className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setExplicitTheme('dark')}
-              className={`p-1.5 rounded-lg transition-all ${
-                theme === 'dark'
-                  ? 'bg-slate-900 text-brand-400 shadow-sm font-bold scale-105'
-                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
-              }`}
-              title="Night Dark Theme (Moon)"
-            >
-              <Moon className="w-4 h-4" />
-            </button>
-          </div>
+          {/* Single Unified Theme Toggle Button */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-colors"
+            title={`Switch to ${theme === 'dark' ? 'Morning Light' : 'Night Dark'} Mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-indigo-600" />
+            )}
+          </button>
 
           {/* Primary CTA */}
           <Link href="/etsy-profit-calculator" className="hidden sm:inline-block">

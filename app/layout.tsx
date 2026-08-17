@@ -11,16 +11,17 @@ const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-278
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Sellrivo — Know Your Profit Before You Sell',
+  title: 'Sellrivo — Know Your Profit Before You Sell | Fee & Margin Calculator',
   description:
-    'Calculate Etsy fees, Amazon FBA costs, print-on-demand margins, break-even prices, and take-home seller earnings in seconds.',
+    'Free ecommerce profit calculator for Etsy sellers, Amazon FBA merchants, Print-on-Demand creators & online shops. Calculate exact listing fees, payment processing, shipping postage, break-even price & net take-home profit instantly.',
   keywords: [
     'Etsy profit calculator',
-    'Etsy fee calculator',
+    'Etsy fee calculator 2026',
     'Amazon FBA calculator',
-    'Print on demand calculator',
-    'Break even calculator',
-    'Profit margin calculator',
+    'Print on demand profit calculator',
+    'Break even price calculator',
+    'Profit margin vs markup calculator',
+    'Etsy seller calculator free',
   ],
   authors: [{ name: 'Sellrivo' }],
   other: {
@@ -28,7 +29,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Sellrivo — Know Your Profit Before You Sell',
-    description: 'Calculate real seller fees, profit margins, and break-even prices before listing products.',
+    description:
+      'Free seller fee & profit calculator suite for Etsy, Amazon FBA & POD. Calculate true listing fees, processing costs, break-even prices & net take-home earnings in seconds.',
     url: siteUrl,
     siteName: 'Sellrivo',
     images: [
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Sellrivo Ecommerce Profit & Fee Calculator Suite',
+        alt: 'Sellrivo — Ecommerce Profit & Fee Calculator Suite',
       },
     ],
     locale: 'en_US',
@@ -45,12 +47,15 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Sellrivo — Know Your Profit Before You Sell',
-    description: 'Calculate Etsy fees, Amazon FBA costs, and take-home seller earnings instantly.',
+    description:
+      'Calculate Etsy fees, Amazon FBA costs, POD margins & net take-home earnings instantly before listing your next product.',
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
     index: true,
     follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
   },
 };
 
@@ -62,6 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Performance & Speed Optimization Preconnects */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+
         <JsonLd
           type="WebSite"
           data={{
@@ -74,6 +84,7 @@ export default function RootLayout({
             },
           }}
         />
+
         <Script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}

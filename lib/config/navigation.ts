@@ -7,6 +7,7 @@ export interface NavItem {
 }
 
 export const MAIN_NAV_ITEMS: NavItem[] = [
+  { label: 'Home', href: '/', category: 'main', description: 'Homepage and tool overview' },
   { label: 'Etsy Calculator', href: '/etsy-profit-calculator', category: 'calculators', description: 'Estimate listing, transaction & processing fees' },
   { label: 'Amazon FBA', href: '/amazon-fba-calculator', category: 'calculators', description: 'Referral, fulfillment weight & storage costs' },
   { label: 'Print-on-Demand', href: '/pod-profit-calculator', category: 'calculators', description: 'Printify, Gelato & store margin calculator' },

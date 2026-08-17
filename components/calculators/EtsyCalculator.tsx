@@ -102,11 +102,11 @@ export const EtsyCalculator: React.FC<{
   const sensitivityPoints = generatePriceSensitivityCurve(inputs.sellingPrice || 25, (testPrice) => {
     const res = calculateEtsyProfit({ ...inputs, sellingPrice: testPrice });
     return {
-      price: testPrice,
-      revenue: res.grossRevenue,
+      grossRevenue: res.grossRevenue,
       netProfit: res.netProfit,
-      margin: res.profitMargin,
+      profitMargin: res.profitMargin,
       totalFees: res.totalFees,
+      totalCosts: res.totalCosts,
     };
   });
 

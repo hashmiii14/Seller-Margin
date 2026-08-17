@@ -345,33 +345,33 @@ export default function HomePage() {
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <h2 className="text-2xl sm:text-3xl font-black tracking-tight">4 Steps to Zero Fee Surprises</h2>
               <p className="text-xs sm:text-sm text-slate-400">
-                Four clear steps to protect your margins before listing inventory.
+                Protect every dollar before you hit publish. Simple, exact calculations in seconds.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
               <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700 space-y-2">
                 <span className="w-7 h-7 rounded-lg bg-brand-500 text-white font-bold text-xs flex items-center justify-center">1</span>
-                <h4 className="font-bold text-sm text-slate-100">Enter Your Numbers</h4>
-                <p className="text-xs text-slate-400">Input your retail price, product material costs, and shipping fees.</p>
+                <h4 className="font-bold text-sm text-slate-100">Enter Product Details</h4>
+                <p className="text-xs text-slate-400">Input your retail price, garment/item manufacturing cost, and shipping fees.</p>
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700 space-y-2">
                 <span className="w-7 h-7 rounded-lg bg-brand-500 text-white font-bold text-xs flex items-center justify-center">2</span>
-                <h4 className="font-bold text-sm text-slate-100">Select Marketplace</h4>
-                <p className="text-xs text-slate-400">Choose Etsy, Amazon FBA, or Print-on-Demand fee rules.</p>
+                <h4 className="font-bold text-sm text-slate-100">Pick Target Platform</h4>
+                <p className="text-xs text-slate-400">Select Etsy, Amazon FBA, or Print-on-Demand (Printify/Gelato) rules.</p>
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700 space-y-2">
                 <span className="w-7 h-7 rounded-lg bg-brand-500 text-white font-bold text-xs flex items-center justify-center">3</span>
-                <h4 className="font-bold text-sm text-slate-100">See Real Take-Home</h4>
-                <p className="text-xs text-slate-400">View exact fee deductions, net profit amount, and profit margin %.</p>
+                <h4 className="font-bold text-sm text-slate-100">Audit Take-Home Pay</h4>
+                <p className="text-xs text-slate-400">See real fee deductions, net payout, and net profit margin % instantly.</p>
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-800/60 border border-slate-700 space-y-2">
                 <span className="w-7 h-7 rounded-lg bg-brand-500 text-white font-bold text-xs flex items-center justify-center">4</span>
-                <h4 className="font-bold text-sm text-slate-100">Test Price Sensitivity</h4>
-                <p className="text-xs text-slate-400">Use our sensitivity curve to see what happens if you raise your price by $5.</p>
+                <h4 className="font-bold text-sm text-slate-100">Simulate Price Hikes</h4>
+                <p className="text-xs text-slate-400">Use our sensitivity curve to see what happens to your margin if you raise price by $5.</p>
               </div>
             </div>
           </div>
@@ -379,22 +379,22 @@ export default function HomePage() {
 
         {/* COMPARISON TOOLS */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
             <div className="space-y-3 text-left max-w-xl">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 dark:bg-orange-950 text-orange-600 dark:text-orange-400 text-xs font-bold">
-                <Layers className="w-3.5 h-3.5" /> Platform Comparison
+                <Layers className="w-3.5 h-3.5" /> Platform Showdown
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-                Etsy vs Amazon FBA Fee & Profit Comparison
+              <h3 className="text-2xl font-black text-slate-900 dark:text-slate-100">
+                Etsy vs Amazon FBA: Which One Makes You More Money?
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400">
-                Compare marketplace referral fees, listing charges, fulfillment costs, and audience scale to decide which platform fits your product catalog best.
+                Compare marketplace referral fees, listing charges, fulfillment costs, and audience scale before choosing where to list.
               </p>
             </div>
 
             <Link href="/compare/etsy-vs-amazon" className="shrink-0">
-              <Button size="lg" variant="brand" className="gap-2">
-                View Etsy vs Amazon Guide <ArrowRight className="w-4 h-4" />
+              <Button size="lg" variant="brand" className="gap-2 shadow-md">
+                View Full Platform Matrix <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>
@@ -409,11 +409,11 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100">
-                Popular Seller Guides & Finance Articles
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-slate-100">
+                Master Marketplace Economics & Scale Profits
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Actionable pricing tutorials written specifically for online sellers.
+                Real math, step-by-step formulas, and battle-tested pricing strategies written for creators.
               </p>
             </div>
             <Link href="/guides" className="text-xs font-bold text-brand-600 dark:text-brand-400 hover:underline">
@@ -422,19 +422,19 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <Link href="/guides/how-to-calculate-etsy-profit" className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 transition-all space-y-2">
+            <Link href="/guides/how-to-calculate-etsy-profit" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
               <BookOpen className="w-5 h-5 text-orange-500" />
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">How to Calculate Real Etsy Profit</h4>
               <p className="text-xs text-slate-500 line-clamp-2">Complete breakdown of Etsy fees, listing costs, and transaction fees.</p>
             </Link>
 
-            <Link href="/guides/how-to-price-print-on-demand-products" className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 transition-all space-y-2">
+            <Link href="/guides/how-to-price-print-on-demand-products" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
               <BookOpen className="w-5 h-5 text-emerald-500" />
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">How to Price Print-on-Demand Items</h4>
               <p className="text-xs text-slate-500 line-clamp-2">Learn how to factor in Printify & Gelato supplier blanks and shipping.</p>
             </Link>
 
-            <Link href="/guides/margin-vs-markup-explained" className="p-5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 transition-all space-y-2">
+            <Link href="/guides/margin-vs-markup-explained" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
               <BookOpen className="w-5 h-5 text-blue-500" />
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">Profit Margin vs Markup Explained</h4>
               <p className="text-xs text-slate-500 line-clamp-2">Never confuse margin % and markup % when pricing product inventory.</p>
@@ -445,8 +445,8 @@ export default function HomePage() {
         {/* FREQUENTLY ASKED QUESTIONS */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Everything you need to know about Sellrivo</p>
+            <h2 className="text-2xl font-black text-slate-900 dark:text-slate-100">Clear Answers to Your Seller Math Questions</h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">No fluff. Transparent financial calculations for every major platform.</p>
           </div>
 
           <div className="space-y-4">

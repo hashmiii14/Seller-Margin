@@ -56,26 +56,27 @@ export default function HomePage() {
 
       <div className="space-y-20 py-8 sm:py-12">
         {/* HERO SECTION ABOVE THE FOLD */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-glow-bg rounded-3xl py-8 sm:py-12 border border-slate-200/50 dark:border-slate-800/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Messaging */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5" />
-                FREE SELLER PROFIT CALCULATORS
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-brand-500 animate-pulse" />
+                FREE SELLER PROFIT CALCULATORS (2026 RATES)
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-slate-100 tracking-tight leading-[1.1]">
-                Know Your Profit Before You Sell.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
+                <span className="text-slate-900 dark:text-slate-100">Know Your Profit</span>{' '}
+                <span className="gradient-text-brand block sm:inline">Before You Sell.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-xl">
                 Calculate marketplace fees, product costs, shipping, advertising, break-even price, and net profit in seconds. Built for Etsy sellers, Amazon FBA, POD creators, and ecommerce brands.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                 <Link href="/etsy-profit-calculator">
-                  <Button size="lg" variant="brand" className="w-full sm:w-auto text-base gap-2">
+                  <Button size="lg" variant="brand" className="w-full sm:w-auto text-base gap-2 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition-all">
                     <Calculator className="w-5 h-5" /> Calculate My Profit
                   </Button>
                 </Link>
@@ -88,7 +89,7 @@ export default function HomePage() {
               </div>
 
               {/* Trust Badges */}
-              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-slate-600 dark:text-slate-400 text-xs font-semibold">
+              <div className="pt-6 border-t border-slate-200/80 dark:border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-slate-600 dark:text-slate-400 text-xs font-semibold">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>100% Free Always</span>
@@ -109,8 +110,11 @@ export default function HomePage() {
             </div>
 
             {/* Right Interactive Hero Calculator */}
-            <div className="lg:col-span-6">
-              <CalculatorPreview />
+            <div className="lg:col-span-6 relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-brand-500 to-emerald-500 rounded-3xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative">
+                <CalculatorPreview />
+              </div>
             </div>
           </div>
         </section>

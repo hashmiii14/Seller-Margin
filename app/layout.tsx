@@ -31,6 +31,14 @@ export const metadata: Metadata = {
     description: 'Calculate real seller fees, profit margins, and break-even prices before listing products.',
     url: siteUrl,
     siteName: 'Sellrivo',
+    images: [
+      {
+        url: `${siteUrl}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Sellrivo Ecommerce Profit & Fee Calculator Suite',
+      },
+    ],
     locale: 'en_US',
     type: 'website',
   },
@@ -38,6 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sellrivo — Know Your Profit Before You Sell',
     description: 'Calculate Etsy fees, Amazon FBA costs, and take-home seller earnings instantly.',
+    images: [`${siteUrl}/og-image.png`],
   },
   robots: {
     index: true,

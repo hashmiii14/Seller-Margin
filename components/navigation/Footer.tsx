@@ -11,10 +11,7 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center font-black text-sm">
-                SR
-              </div>
-              <span className="font-black text-xl text-white tracking-tight">
+              <span className="font-black text-2xl text-white tracking-tight hover:text-brand-400 transition-colors">
                 Sellrivo
               </span>
             </Link>

@@ -48,18 +48,10 @@ export const Header: React.FC = () => {
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-9 h-9 rounded-xl bg-brand-600 dark:bg-brand-500 text-white flex items-center justify-center font-black text-base shadow-sm group-hover:scale-105 transition-transform">
-            SR
-          </div>
-          <div className="flex flex-col">
-            <span className="font-black text-lg text-slate-900 dark:text-slate-100 tracking-tight leading-none">
-              Sellrivo
-            </span>
-            <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 leading-tight">
-              Know Your Profit Before You Sell
-            </span>
-          </div>
+        <Link href="/" className="flex items-center gap-2 group">
+          <span className="font-black text-2xl text-slate-900 dark:text-slate-100 tracking-tight hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+            Sellrivo
+          </span>
         </Link>
 
         {/* Desktop Navigation Links */}

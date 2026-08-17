@@ -60,11 +60,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Messaging */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300 text-xs font-bold uppercase tracking-wider shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-brand-500 animate-pulse" />
-                FREE SELLER PROFIT CALCULATORS (2026 RATES)
-              </div>
-
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
                 <span className="text-slate-900 dark:text-slate-100">Know Your Profit</span>{' '}
                 <span className="gradient-text-brand block sm:inline">Before You Sell.</span>
@@ -533,6 +528,28 @@ export default function HomePage() {
                 <p className="text-slate-600 dark:text-slate-400">Questions or fee updates? Email us directly at <a href="mailto:mdhashmi955@gmail.com" className="text-brand-600 dark:text-brand-400 font-bold hover:underline">mdhashmi955@gmail.com</a>.</p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* PRIVACY POLICY & TRUST HIGHLIGHT SECTION */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="p-8 rounded-3xl bg-slate-900 text-white border border-slate-800 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+              <div>
+                <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider block">
+                  Data Security & Transparency Guarantee
+                </span>
+                <h3 className="text-xl font-black text-white">Privacy Policy Overview</h3>
+              </div>
+              <Link href="/privacy-policy">
+                <Button size="sm" variant="outline" className="border-slate-700 text-slate-200 hover:bg-slate-800 text-xs">
+                  Read Full Privacy Policy →
+                </Button>
+              </Link>
+            </div>
+            <p className="text-xs text-slate-300 leading-relaxed max-w-3xl">
+              Sellrivo takes seller data privacy with total seriousness. Your cost inputs, retail pricing, profit margins, and sales estimates remain 100% private to your device. We do not require accounts, we do not log pricing entries on remote servers, and we strictly comply with global GDPR & CCPA standards.
+            </p>
           </div>
         </section>
       </div>

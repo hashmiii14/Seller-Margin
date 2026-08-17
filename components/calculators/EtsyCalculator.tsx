@@ -17,7 +17,7 @@ import { ShareButton } from '@/components/calculators/ShareButton';
 import { PresetsBar } from '@/components/calculators/PresetsBar';
 import { FeeChart } from '@/components/calculators/FeeChart';
 import { encodeCalculatorState } from '@/lib/calculators/url-state';
-import { RotateCcw, SlidersHorizontal, Globe, ExternalLink } from 'lucide-react';
+import { RotateCcw, SlidersHorizontal, Globe, ExternalLink, Calculator } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 
 const DEFAULT_INPUTS: EtsyInputs = {

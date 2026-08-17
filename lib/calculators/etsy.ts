@@ -1,6 +1,8 @@
 import { EtsyInputs, EtsyOutputs } from './types';
 import { computeSharedMetrics, roundCurrency } from './core';
 
+export { generatePriceSensitivityCurve } from './core';
+
 export function calculateEtsyProfit(inputs: EtsyInputs): EtsyOutputs {
   const price = Math.max(0, inputs.sellingPrice || 0);
   const qty = Math.max(1, inputs.quantity || 1);

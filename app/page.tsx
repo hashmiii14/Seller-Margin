@@ -54,9 +54,9 @@ export default function HomePage() {
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="SoftwareApplication" data={softwareSchema} />
 
-      <div className="space-y-16 pt-2 pb-12 sm:pt-4 sm:pb-16">
+      <div className="space-y-12 pt-0 sm:pt-2 pb-12">
         {/* HERO SECTION ABOVE THE FOLD */}
-        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-glow-bg rounded-3xl py-6 sm:py-8 border border-slate-200/50 dark:border-slate-800/50">
+        <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-glow-bg rounded-3xl pt-4 pb-6 sm:pt-6 sm:pb-8 border border-slate-200/50 dark:border-slate-800/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Hero Messaging */}
             <div className="lg:col-span-6 space-y-6 text-left">

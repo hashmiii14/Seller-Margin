@@ -30,6 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/calculators/pricing',
     '/compare/etsy-vs-amazon',
     '/compare/etsy-vs-amazon-fba',
+    '/llms.txt',
+    '/llms-full.txt',
     '/guides',
     '/about',
     '/contact',

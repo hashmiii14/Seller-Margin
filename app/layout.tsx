@@ -83,12 +83,20 @@ export default function RootLayout({
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClientId}`}
           crossOrigin="anonymous"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </head>
       <body className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-brand-500 selection:text-white">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:p-3 focus:bg-brand-600 focus:text-white focus:rounded-lg focus:shadow-lg font-bold text-xs"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main className="flex-1 site-grid-lines">{children}</main>
+        <main id="main-content" className="flex-1 site-grid-lines">
+          {children}
+        </main>
         <Footer />
         <CookieConsent />
       </body>

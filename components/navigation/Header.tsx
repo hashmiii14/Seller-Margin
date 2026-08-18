@@ -103,17 +103,19 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
+            aria-label="Search calculators"
+            className="p-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
             title="Search Calculators (Cmd+K)"
           >
             <Search className="w-4 h-4" />
           </button>
 
-          {/* Single Unified Theme Toggle Button: Moon = Dark Mode, Sun = Light Mode */}
+          {/* Single Unified Theme Toggle Button */}
           <button
             type="button"
             onClick={toggleTheme}
-            className="p-2 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-colors"
+            aria-label="Toggle light and dark mode theme"
+            className="p-2.5 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
             title={`Active: ${theme === 'dark' ? 'Night Dark Mode (Moon)' : 'Morning Light Mode (Sun)'}. Click to switch.`}
           >
             {theme === 'dark' ? (
@@ -134,7 +136,9 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            className="lg:hidden p-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

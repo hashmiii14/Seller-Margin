@@ -151,7 +151,7 @@ export const EtsyCalculator: React.FC<{
   };
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-6" data-agentic-calculator="etsy">
       {/* Top Header Controls Bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex items-center gap-3">

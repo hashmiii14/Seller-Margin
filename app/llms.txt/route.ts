@@ -1,0 +1,45 @@
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const content = `# Sellrivo — E-Commerce Profit & Fee Calculator Engine
+
+> Sellrivo (https://www.sellrivo.site) is a free, privacy-first ecommerce financial calculator suite built for Etsy sellers, Amazon FBA merchants, Print-on-Demand creators, and online store owners.
+
+## Calculator Tools & Routes
+
+- [Etsy Profit Calculator](https://www.sellrivo.site/etsy-profit-calculator): Instant calculation of $0.20 listing fees, 6.5% transaction costs, Etsy Payments processing rates, and net seller profit.
+- [Etsy Fee Calculator UK](https://www.sellrivo.site/etsy-fee-calculator-uk): UK-specific fee calculator (4.0% + £0.20 GBP processing, 6.5% transaction, 20% UK VAT).
+- [Etsy Fee Calculator Canada](https://www.sellrivo.site/etsy-fee-calculator-canada): Canada-specific fee calculator (3.0% + CA$0.25 CAD processing, GST/HST).
+- [Etsy Fee Calculator Australia](https://www.sellrivo.site/etsy-fee-calculator-australia): Australia-specific fee calculator (3.0% + A$0.25 AUD processing, GST).
+- [Etsy Digital Downloads Calculator](https://www.sellrivo.site/etsy-digital-downloads-calculator): Pre-configured for Canva templates, printables, and SVG files ($0 COGS & $0 shipping).
+- [Printify Profit Calculator](https://www.sellrivo.site/printify-profit-calculator): Print-on-Demand margin calculator for Printify blank garments and print providers.
+- [Gelato Profit Calculator](https://www.sellrivo.site/gelato-profit-calculator): Localized print-on-demand margin calculator for Gelato items across 32 countries.
+- [Amazon FBA Calculator](https://www.sellrivo.site/amazon-fba-calculator): Estimate 15% category referral fees, pick & pack fulfillment, and monthly storage fees.
+- [Etsy vs Amazon FBA Comparison](https://www.sellrivo.site/compare/etsy-vs-amazon-fba): Head-to-head fee comparison matrix between Etsy and Amazon FBA.
+- [Profit Margin & Markup Calculator](https://www.sellrivo.site/profit-margin-calculator): Gross margin, net margin %, markup %, and ROI calculations.
+- [Break-Even Calculator](https://www.sellrivo.site/break-even-calculator): Minimum break-even retail price and unit sales volume floor.
+
+## Guides & Articles
+
+- [How to Calculate Etsy Profit](https://www.sellrivo.site/guides/how-to-calculate-etsy-profit): Complete 2026 seller guide detailing hidden fees and exact profit formulas.
+- [Etsy Fees Explained](https://www.sellrivo.site/guides/etsy-fees-explained-2026): International fee matrix for US, UK, Canada, Australia, and India.
+- [Etsy vs Amazon FBA](https://www.sellrivo.site/guides/etsy-vs-amazon-fba-fee-comparison): Marketplace fee comparison and profit analysis.
+- [Pricing Print-on-Demand T-Shirts](https://www.sellrivo.site/guides/how-to-price-print-on-demand-tshirts): Step-by-step POD pricing blueprint.
+- [Margin vs Markup Formula](https://www.sellrivo.site/guides/margin-vs-markup-formula): Financial difference between margin % and markup %.
+
+## Core 2026 Fee Rules
+
+- **Etsy Listing Fee**: $0.20 USD (auto-renews every 4 months or per unit sale).
+- **Etsy Transaction Fee**: 6.5% of total payment collected (Retail Price + Shipping Charged).
+- **Etsy Payments (US)**: 3.0% + $0.25 USD per transaction.
+- **Etsy Offsite Ads**: 15% fee for shops under $10k annual sales, 12% mandatory fee for shops over $10k annual sales.
+- **Amazon FBA Referral Fee**: 15% average category commission.
+`;
+
+  return new NextResponse(content, {
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400, s-maxage=86400',
+    },
+  });
+}

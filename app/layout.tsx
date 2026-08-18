@@ -6,23 +6,17 @@ import { Footer } from '@/components/navigation/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { CookieConsent } from '@/components/ui/CookieConsent';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sellrivo.site';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
 const adsenseClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-2781286202640992';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: siteUrl,
+  },
   title: 'Sellrivo — Know Your Profit Before You Sell | Fee & Margin Calculator',
   description:
     'Free ecommerce profit calculator for Etsy sellers, Amazon FBA merchants, Print-on-Demand creators & online shops. Calculate exact listing fees, payment processing, shipping postage, break-even price & net take-home profit instantly.',
-  keywords: [
-    'Etsy profit calculator',
-    'Etsy fee calculator 2026',
-    'Amazon FBA calculator',
-    'Print on demand profit calculator',
-    'Break even price calculator',
-    'Profit margin vs markup calculator',
-    'Etsy seller calculator free',
-  ],
   authors: [{ name: 'Sellrivo' }],
   other: {
     'google-adsense-account': adsenseClientId,

@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/calculators/profit-margin',
     '/calculators/pricing',
     '/compare/etsy-vs-amazon',
+    '/compare/etsy-vs-amazon-fba',
     '/guides',
     '/about',
     '/contact',

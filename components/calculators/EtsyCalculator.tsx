@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useEffect, useTransition } from 'react';
 import { EtsyInputs, CurrencyCode } from '@/lib/calculators/types';
 import { calculateEtsyProfit, generatePriceSensitivityCurve } from '@/lib/calculators/etsy';
 import { CURRENCIES } from '@/lib/config/currencies';
@@ -56,6 +56,29 @@ export const EtsyCalculator: React.FC<{
 
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [, startTransition] = useTransition();
+
+  // Auto Currency & Country Detection based on Browser Locale
+  useEffect(() => {
+    if (typeof window !== 'undefined' && initialCountry === 'US' && !initialParams?.currency) {
+      const lang = navigator.language || '';
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      let detectedCountry = 'US';
+
+      if (lang.includes('en-GB') || tz.includes('Europe/London')) {
+        detectedCountry = 'UK';
+      } else if (lang.includes('en-CA') || tz.includes('Toronto') || tz.includes('Vancouver')) {
+        detectedCountry = 'CA';
+      } else if (lang.includes('en-AU') || tz.includes('Australia') || tz.includes('Sydney')) {
+        detectedCountry = 'AU';
+      } else if (lang.includes('de') || tz.includes('Europe/Berlin')) {
+        detectedCountry = 'DE';
+      }
+
+      if (detectedCountry !== 'US' && ETSY_COUNTRY_FEES[detectedCountry]) {
+        handleCountryChange(detectedCountry);
+      }
+    }
+  }, []);
 
   const handleCountryChange = (countryCode: string) => {
     setSelectedCountry(countryCode);

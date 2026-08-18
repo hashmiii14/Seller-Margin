@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { SharedCalculationResult, CurrencyCode } from '@/lib/calculators/types';
 import { formatCurrency } from '@/lib/config/currencies';
 import { Badge } from '@/components/ui/Card';
-import { AlertTriangle, Calculator, Target, Lightbulb, Printer, Code, Download } from 'lucide-react';
+import { AlertTriangle, Calculator, Target, Lightbulb, Printer, Code, Download, Copy, Check } from 'lucide-react';
 import { SmartAffiliateCard } from '@/components/monetization/SmartAffiliateCard';
 import { EmbedWidgetModal } from '@/components/calculators/EmbedWidgetModal';
 import { LeadCaptureModal } from '@/components/monetization/LeadCaptureModal';
@@ -26,6 +26,8 @@ export const ResultCard: React.FC<ResultCardProps> = ({
 }) => {
   const [embedModalOpen, setEmbedModalOpen] = useState<boolean>(false);
   const [leadModalOpen, setLeadModalOpen] = useState<boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
+
   const isLoss = result.netProfit < 0;
 
   if (!hasInputValues || result.grossRevenue === 0) {
@@ -50,6 +52,25 @@ export const ResultCard: React.FC<ResultCardProps> = ({
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleCopySummary = async () => {
+    const text = `📊 Sellrivo Calculation Summary
+-----------------------------------
+Gross Revenue: ${formatCurrency(result.grossRevenue, currency)}
+Total Platform Fees: ${formatCurrency(result.totalFees, currency)}
+Net Profit: ${formatCurrency(result.netProfit, currency)} (${result.profitMargin}% margin)
+Break-Even Price: ${formatCurrency(result.breakEvenPrice, currency)}
+-----------------------------------
+Calculated using Sellrivo.site`;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Fallback
+    }
   };
 
   return (
@@ -103,8 +124,21 @@ export const ResultCard: React.FC<ResultCardProps> = ({
           </p>
         )}
 
-        {/* Action Toolbar: Print, Lead Download, Embed */}
+        {/* Discrete Print & Export Watermark */}
+        <div className="hidden print:block mt-4 pt-2 border-t border-slate-300 text-[10px] text-slate-500 text-center font-mono">
+          Calculated using Sellrivo.site — Free Ecommerce Fee & Profit Calculator
+        </div>
+
+        {/* Action Toolbar: Copy Summary, Export PDF, Free Cheat Sheet, Embed */}
         <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center justify-between gap-2 text-xs flex-wrap">
+          <button
+            onClick={handleCopySummary}
+            className="py-1.5 px-3 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition-colors"
+            title="Copy full calculation summary with watermark to clipboard"
+          >
+            {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
+            {copied ? 'Summary Copied!' : 'Copy Summary'}
+          </button>
           <button
             onClick={handlePrint}
             className="py-1.5 px-3 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold border border-slate-200 dark:border-slate-700 flex items-center gap-1.5 transition-colors"
@@ -115,7 +149,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({
             onClick={() => setLeadModalOpen(true)}
             className="py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold flex items-center gap-1.5 transition-colors shadow-sm"
           >
-            <Download className="w-3.5 h-3.5" /> Free 2026 Cheat Sheet
+            <Download className="w-3.5 h-3.5" /> Free Cheat Sheet
           </button>
           <button
             onClick={() => setEmbedModalOpen(true)}

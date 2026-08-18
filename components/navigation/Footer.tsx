@@ -70,7 +70,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Footer Disclaimer & Copyright */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
           <p>© {new Date().getFullYear()} Sellrivo. Independent software tool. Not affiliated with Etsy, Amazon, Printify, or Gelato.</p>
           <p>Calculations are estimates based on published fee schedules.</p>
         </div>

@@ -476,13 +476,13 @@ export default function HomePage() {
               <p className="text-xs text-slate-500 line-clamp-2">Complete breakdown of Etsy fees, listing costs, and transaction fees.</p>
             </Link>
 
-            <Link href="/guides/how-to-price-print-on-demand-products" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
+            <Link href="/guides/how-to-price-print-on-demand-tshirts" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
               <BookOpen className="w-5 h-5 text-emerald-500" />
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">How to Price Print-on-Demand Items</h4>
               <p className="text-xs text-slate-500 line-clamp-2">Learn how to factor in Printify & Gelato supplier blanks and shipping.</p>
             </Link>
 
-            <Link href="/guides/margin-vs-markup-explained" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
+            <Link href="/guides/margin-vs-markup-formula" className="interactive-card p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-400 space-y-2">
               <BookOpen className="w-5 h-5 text-blue-500" />
               <h4 className="font-bold text-sm text-slate-900 dark:text-slate-100">Profit Margin vs Markup Explained</h4>
               <p className="text-xs text-slate-500 line-clamp-2">Never confuse margin % and markup % when pricing product inventory.</p>

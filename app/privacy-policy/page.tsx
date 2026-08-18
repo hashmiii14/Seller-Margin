@@ -3,10 +3,29 @@ import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/privacy-policy`;
+
 export const metadata: Metadata = {
   title: 'Privacy Policy | Sellrivo',
   description:
     'Understand how Sellrivo protects user privacy. Client-side calculations with zero personal data collection.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Privacy Policy | Sellrivo',
+    description: 'Understand how Sellrivo protects user privacy. Client-side calculations with zero data tracking.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Sellrivo',
+    description: 'Client-side calculation privacy disclosures.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function PrivacyPolicyPage() {

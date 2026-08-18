@@ -1,20 +1,36 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { Mail, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { ContactForm } from '@/components/forms/ContactForm';
+import { Mail } from 'lucide-react';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/contact`;
+
+export const metadata: Metadata = {
+  title: 'Contact Sellrivo — Direct Team Support & Feedback',
+  description:
+    'Get in touch with the Sellrivo team for fee schedule updates, feature requests, partnership inquiries, or platform feedback.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Contact Sellrivo — Support & Feedback',
+    description: 'Get in touch with the Sellrivo team for fee updates and partnership inquiries.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Sellrivo Support',
+    description: 'Contact Sellrivo team for fee updates and support.',
+    images: [`${siteUrl}/og-image.png`],
+  },
+};
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState<boolean>(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setSubmitted(true);
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       <Breadcrumbs items={[{ name: 'Contact', href: '/contact' }]} />
@@ -23,7 +39,8 @@ export default function ContactPage() {
         type="WebPage"
         data={{
           name: 'Contact Sellrivo',
-          description: 'Get in touch with the Sellrivo team.',
+          description: 'Get in touch with the Sellrivo team for fee schedule updates and support.',
+          url: pageUrl,
         }}
       />
 
@@ -61,73 +78,8 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form */}
-        <div className="md:col-span-7 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
-          {submitted ? (
-            <div className="text-center py-12 space-y-4">
-              <div className="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Message Received!</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 max-w-sm mx-auto">
-                Thank you for contacting Sellrivo. We have received your inquiry and will respond to <strong>{formData.email}</strong> shortly.
-              </p>
-              <button
-                onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', message: '' }); }}
-                className="text-xs font-bold text-brand-600 dark:text-brand-400 hover:underline pt-2"
-              >
-                Send Another Message
-              </button>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <h3 className="font-bold text-lg text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-brand-600" /> Send Us a Message
-              </h3>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Your Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Sarah Jenkins"
-                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="e.g. sarah@example.com"
-                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Message</label>
-                <textarea
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="How can we help you?"
-                  className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors shadow-md"
-              >
-                <Send className="w-4 h-4" /> Send Message
-              </button>
-            </form>
-          )}
+        <div className="md:col-span-7">
+          <ContactForm />
         </div>
       </div>
     </div>

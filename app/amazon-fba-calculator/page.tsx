@@ -8,10 +8,30 @@ import { SEO_PAGES } from '@/lib/config/seo-pages';
 import Link from 'next/link';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/amazon-fba-calculator`;
+
 export const metadata: Metadata = {
   title: 'Amazon FBA Calculator (2026 Rules) | Estimate FBA Fees & Net Profit Margin',
   description:
     'Free Amazon FBA calculator. Estimate 15% category referral fees, pick & pack fulfillment costs, monthly inventory storage, PPC ad spend, and net take-home seller profit margins.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Amazon FBA Profit & Fee Calculator (2026 Rules) | Sellrivo',
+    description:
+      'Calculate Amazon FBA referral fees, pick & pack fulfillment costs, storage fees, and net profit margins.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Amazon FBA Calculator 2026 | Sellrivo',
+    description: 'Calculate Amazon FBA referral fees, fulfillment costs, and net profit.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 const AMAZON_FAQS = [
@@ -54,6 +74,16 @@ export default function AmazonFbaCalculatorSeoPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <Breadcrumbs items={[{ name: 'Amazon FBA Calculator', href: '/amazon-fba-calculator' }]} />
 
+      <JsonLd
+        type="WebApplication"
+        data={{
+          name: 'Amazon FBA Calculator 2026',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Any',
+          url: pageUrl,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

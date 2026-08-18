@@ -5,10 +5,29 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { ShieldCheck, Calculator, Target, Mail } from 'lucide-react';
 import Link from 'next/link';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/about`;
+
 export const metadata: Metadata = {
   title: 'About Sellrivo — Independent Ecommerce Seller Calculators',
   description:
     'Learn about Sellrivo, our mission to make ecommerce fee calculations transparent, accurate, and accessible for sellers worldwide.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'About Sellrivo — Independent Ecommerce Seller Calculators',
+    description: 'Learn about Sellrivo, our mission to make fee calculations transparent and accurate.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Sellrivo',
+    description: 'Learn about Sellrivo and our free seller fee calculators.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function AboutPage() {

@@ -7,10 +7,30 @@ import { Accordion } from '@/components/ui/Select';
 import Link from 'next/link';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/pod-profit-calculator`;
+
 export const metadata: Metadata = {
   title: 'Print-on-Demand Profit Calculator (2026) | Printify & Gelato Margin Tool',
   description:
     'Free Print-on-Demand (POD) profit calculator for Printify, Gelato & Printful. Calculate blank apparel costs, supplier shipping postage, Etsy/Shopify fees, ad spend & net take-home profit.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Print-on-Demand Profit Calculator (2026) | Sellrivo',
+    description:
+      'Calculate Printify & Gelato blank garment base costs, supplier shipping, store commissions, and net profit margins.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Print-on-Demand Profit Calculator | Sellrivo',
+    description: 'Calculate POD garment costs, shipping, and net profit margins.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 const POD_FAQS = [
@@ -46,6 +66,16 @@ export default function PodProfitCalculatorSeoPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <Breadcrumbs items={[{ name: 'POD Profit Calculator', href: '/pod-profit-calculator' }]} />
 
+      <JsonLd
+        type="WebApplication"
+        data={{
+          name: 'Print-on-Demand Profit Calculator 2026',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Any',
+          url: pageUrl,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

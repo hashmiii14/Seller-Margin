@@ -7,10 +7,30 @@ import { Accordion } from '@/components/ui/Select';
 import Link from 'next/link';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/break-even-calculator`;
+
 export const metadata: Metadata = {
   title: 'Break-Even Calculator | Minimum Unit Sales & Price Floor Tool | Sellrivo',
   description:
     'Free Break-Even Calculator for ecommerce & retail sellers. Calculate exact minimum selling price floor and required unit sales volume to cover fixed monthly overhead costs.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Break-Even Calculator | Sellrivo',
+    description:
+      'Calculate minimum selling price floor and required unit sales volume to cover fixed monthly overhead.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Break-Even Calculator | Sellrivo',
+    description: 'Calculate minimum price floor and break-even unit sales volume.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 const BREAK_EVEN_FAQS = [
@@ -41,6 +61,16 @@ export default function BreakEvenCalculatorSeoPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <Breadcrumbs items={[{ name: 'Break-Even Calculator', href: '/break-even-calculator' }]} />
 
+      <JsonLd
+        type="WebApplication"
+        data={{
+          name: 'Break-Even Calculator',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Any',
+          url: pageUrl,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

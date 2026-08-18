@@ -3,10 +3,29 @@ import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/terms`;
+
 export const metadata: Metadata = {
   title: 'Terms of Service | Sellrivo',
   description:
     'Terms and conditions governing the use of Sellrivo web calculators and content.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Terms of Service | Sellrivo',
+    description: 'Terms and conditions governing the use of Sellrivo web calculators.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service | Sellrivo',
+    description: 'Terms of service and usage conditions.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function TermsPage() {

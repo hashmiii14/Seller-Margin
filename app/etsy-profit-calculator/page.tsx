@@ -8,10 +8,30 @@ import { SEO_PAGES } from '@/lib/config/seo-pages';
 import Link from 'next/link';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/etsy-profit-calculator`;
+
 export const metadata: Metadata = {
   title: 'Etsy Profit Calculator (2026 Updated Rates) | Calculate Etsy Fees & Net Profit',
   description:
     'Free Etsy profit calculator. Estimate exact $0.20 listing fees, 6.5% transaction fee, Etsy Payments processing rates (US, UK, EU, CA, AU, IN), Offsite Ads commission, and take-home seller net profit.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Etsy Profit Calculator (2026 Updated Rates) | Sellrivo',
+    description:
+      'Calculate real Etsy transaction fees, payment processing rates, listing costs, and net take-home earnings instantly.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Etsy Profit Calculator 2026 | Sellrivo',
+    description: 'Calculate Etsy fees, payment rates, and net take-home earnings.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 const DETAILED_FAQS = [
@@ -54,6 +74,16 @@ export default function EtsyProfitCalculatorSeoPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <Breadcrumbs items={[{ name: 'Etsy Profit Calculator', href: '/etsy-profit-calculator' }]} />
 
+      <JsonLd
+        type="WebApplication"
+        data={{
+          name: 'Etsy Profit Calculator 2026',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Any',
+          url: pageUrl,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

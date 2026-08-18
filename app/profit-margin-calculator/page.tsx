@@ -7,10 +7,30 @@ import { Accordion } from '@/components/ui/Select';
 import Link from 'next/link';
 import { AdSlot } from '@/components/ads/AdSlot';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/profit-margin-calculator`;
+
 export const metadata: Metadata = {
   title: 'Profit Margin & Markup Calculator | Gross vs Net Margin Tool | Sellrivo',
   description:
     'Free Profit Margin & Markup Calculator. Calculate gross profit dollars, net profit margin %, markup multiplier %, and Return on Investment (ROI) instantly.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Profit Margin & Markup Calculator | Sellrivo',
+    description:
+      'Calculate gross profit dollars, net profit margin %, markup multiplier %, and Return on Investment (ROI).',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Profit Margin & Markup Calculator | Sellrivo',
+    description: 'Calculate gross profit, net margin %, markup %, and ROI.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 const MARGIN_FAQS = [
@@ -36,6 +56,16 @@ export default function ProfitMarginCalculatorSeoPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <Breadcrumbs items={[{ name: 'Profit Margin Calculator', href: '/profit-margin-calculator' }]} />
 
+      <JsonLd
+        type="WebApplication"
+        data={{
+          name: 'Profit Margin & Markup Calculator',
+          applicationCategory: 'BusinessApplication',
+          operatingSystem: 'Any',
+          url: pageUrl,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        }}
+      />
       <JsonLd
         type="FAQPage"
         data={{

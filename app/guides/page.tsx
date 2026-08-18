@@ -5,10 +5,29 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { GUIDES } from '@/lib/config/guides';
 import { BookOpen, Clock, ArrowRight } from 'lucide-react';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/guides`;
+
 export const metadata: Metadata = {
   title: 'Ecommerce Seller Finance & Pricing Guides | Sellrivo',
   description:
     'Free guides and tutorials on Etsy fees, Amazon FBA calculations, print-on-demand pricing strategies, and profit margin analysis.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Ecommerce Seller Finance & Pricing Guides | Sellrivo',
+    description: 'Free guides and tutorials on Etsy fees, Amazon FBA calculations, and print-on-demand pricing.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ecommerce Seller Finance Guides | Sellrivo',
+    description: 'Guides on Etsy fees, Amazon FBA calculations, and POD pricing.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function GuidesIndexPage() {

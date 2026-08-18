@@ -4,10 +4,29 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { AlertCircle } from 'lucide-react';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.sellrivo.site';
+const pageUrl = `${siteUrl}/disclaimer`;
+
 export const metadata: Metadata = {
   title: 'Independent Software & Fee Disclaimer | Sellrivo',
   description:
     'Sellrivo is an independent calculator tool. Read our official platform affiliation and fee estimate disclaimer.',
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    title: 'Platform Affiliation & Fee Disclaimer | Sellrivo',
+    description: 'Read our official platform affiliation and fee calculation estimate disclaimer.',
+    url: pageUrl,
+    siteName: 'Sellrivo',
+    images: [{ url: `${siteUrl}/og-image.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Platform Fee Disclaimer | Sellrivo',
+    description: 'Official platform affiliation and fee estimate disclaimer.',
+    images: [`${siteUrl}/og-image.png`],
+  },
 };
 
 export default function DisclaimerPage() {
